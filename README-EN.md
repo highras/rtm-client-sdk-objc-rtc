@@ -7,7 +7,6 @@ iOS RTM Usage document (integration + interface description)
 * [integration dependency](#integrationdependency)
 * [delegate](#delegate)
 * [quick use](#quickuse)
-* [audio record and play interface](#audiorecordandplayinterface)
 
 <a id="versionsupport">version support</a>
 ================
