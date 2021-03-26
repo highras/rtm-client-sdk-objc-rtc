@@ -28,8 +28,7 @@ iOS RTM实时语音使用文档 （集成+接口说明）
 
 <a id="代理方法">代理方法</a>
 ================
-* 引入协议 RTMProtocol
-* RTMVoiceProtocol
+* 引入协议 RTMProtocol  RTMVoiceProtocol
     
 ```objc
 @required
