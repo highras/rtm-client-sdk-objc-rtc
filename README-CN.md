@@ -84,19 +84,14 @@ self.client.voiceDelegate = self;
                    language:
                   attribute:
                     timeout:
-                    success:^{
- 
-     } connectFail:^(FPNError * _Nullable error) {
+                    success:nil 
+                connectFail:nil];
                     
-     }];
      
 //3.登录成功后 语音初始化
 [self.client initVoiceClientWithTimeout:10
-                                 success:^{
-
-    } fail:^(FPNError * _Nullable error) {
-
-    }];
+                                success:nil 
+                            connectFail:nil];
             
 //4.加入语音房间
 [self.client enterVoiceRoomWithRoomId:@(0)
@@ -105,9 +100,7 @@ self.client.voiceDelegate = self;
 
         //加入成功后  设置voiceActiveRoom活跃房间
         
-    } fail:^(FPNError * _Nullable error) {
- 
-    }];
+} fail:nil];
            
 ```
 
