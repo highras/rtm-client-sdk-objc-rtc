@@ -28,13 +28,10 @@ iOS RTM 使用文档 （集成+接口说明）
 
 <a id="代理方法">代理方法</a>
 ================
-
-
 * 引入协议 RTMProtocol
 * RTMVoiceProtocol
     
 ```objc
-
 @required
 //重连只有在登录成功过1次后才会有效
 //重连将要开始
@@ -42,7 +39,6 @@ iOS RTM 使用文档 （集成+接口说明）
 
 //重连结果
 -(void)rtmReloginCompleted:(RTMClient *)client reloginCount:(int)reloginCount reloginResult:(BOOL)reloginResult error:(FPNError*)error;
-
 
 @optional
 //某人进入房间
@@ -79,6 +75,7 @@ self.client = [RTMClient clientWithEndpoint:
                                  autoRelogin:];
 self.client.voiceDelegate = self;
 
+
 //2.登录
 [self.client loginWithToken:
                    language:
@@ -92,7 +89,8 @@ self.client.voiceDelegate = self;
 [self.client initVoiceClientWithTimeout:10
                                 success:nil 
                             connectFail:nil];
-            
+         
+         
 //4.加入语音房间
 [self.client enterVoiceRoomWithRoomId:@(0)
                               timeout:10
@@ -101,6 +99,7 @@ self.client.voiceDelegate = self;
         //加入成功后  设置voiceActiveRoom活跃房间
         
 } fail:nil];
+
            
 ```
 
