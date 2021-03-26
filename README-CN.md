@@ -5,7 +5,7 @@ iOS RTM 使用文档 （集成+接口说明）
 * [版本支持](#版本支持)
 * [集成依赖](#集成依赖)
 * [代理方法](#代理方法)
-* [校验登录](#校验登录)
+* [快速使用](#快速使用)
 
 
 <a id="版本支持">版本支持</a>
@@ -31,7 +31,7 @@ iOS RTM 使用文档 （集成+接口说明）
 
 
 * 引入协议 RTMProtocol
-* 设置 client.delegate = self;
+* RTMVoiceProtocol
     
 ```objc
 
@@ -65,12 +65,12 @@ iOS RTM 使用文档 （集成+接口说明）
 
 
 
-<a id="校验登录">校验登录</a>
+<a id="快速使用">快速使用</a>
 ================
 ```objc
 #import <Rtm/Rtm.h>
 
-//初始化
+//1.初始化
 self.client = [RTMClient clientWithEndpoint:
                                   projectId:
                                      userId:
@@ -79,35 +79,35 @@ self.client = [RTMClient clientWithEndpoint:
                                  autoRelogin:];
 self.client.voiceDelegate = self;
 
-//登录
-
+//2.登录
+[self.client loginWithToken:
+                   language:
+                  attribute:
+                    timeout:
+                    success:^{
  
-    [self.client loginWithToken:
-                       language:
-                      attribute:
-                        timeout:
-                        success:^{
-                                       
+     } connectFail:^(FPNError * _Nullable error) {
                     
-                } connectFail:^(FPNError * _Nullable error) {
-                    
-                    
-                    
-                }];
-//登录成功后 调用语音初始化
-
+     }];
+     
+//3.登录成功后 语音初始化
 [self.client initVoiceClientWithTimeout:10
                                  success:^{
-        
-       
-        
+
     } fail:^(FPNError * _Nullable error) {
-        
-       
-        
+
     }];
             
+//4.加入语音房间
+[self.client enterVoiceRoomWithRoomId:@(0)
+                              timeout:10
+                              success:^(RTMVoiceEnterRoomAnswer * answer) {
 
+        //加入成功后  设置voiceActiveRoom活跃房间
+        
+    } fail:^(FPNError * _Nullable error) {
+ 
+    }];
            
 ```
 
