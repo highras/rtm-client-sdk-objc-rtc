@@ -110,13 +110,13 @@
 }
 -(void)_joinVioceRoom{
     
-    [self.client enterVoiceRoomWithRoomId:@(111)
+    [self.client enterVoiceRoomWithRoomId:@(666)
                                   timeout:10
                                   success:^(RTMVoiceEnterRoomAnswer * answer) {
         
         NSLog(@"加入房间成功");
         
-        self.client.voiceActiveRoom = 111;
+        self.client.voiceActiveRoom = 666;
         //可同时加入多个房间  但是只会收发 voiceActiveRoom 活跃房间的实时语音  默认-1为未设置  语音结束后设置为-1
         //voiceActiveRoom 只会对已加入成功的房间设置生效
         
