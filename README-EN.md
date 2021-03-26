@@ -6,7 +6,7 @@ iOS RTM Usage document (integration + interface description)
 * [version support](#versionsupport)
 * [integration dependency](#integrationdependency)
 * [delegate](#delegate)
-* [quick use](#quick use)
+* [quick use](#quickuse)
 * [audio record and play interface](#audiorecordandplayinterface)
 
 <a id="versionsupport">version support</a>
@@ -61,7 +61,7 @@ iOS RTM Usage document (integration + interface description)
 
 
 
-<a id="quick use">quick use</a>
+<a id="quick use">quickuse</a>
 ================
 ================
 ```objc
