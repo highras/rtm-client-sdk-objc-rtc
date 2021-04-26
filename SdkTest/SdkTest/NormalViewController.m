@@ -425,15 +425,12 @@
             }else if (indexPath.row == 6){//获取group中的所有member
 
                 [self.client getGroupMembersWithId:@(666)
+                                            online:YES
                                            timeout:10
-                                           success:^(NSArray * _Nullable uidsArray) {
-
-                    NSLog(@"%@",uidsArray);
-
+                                           success:^(RTMMemberAnswer * _Nullable memberCountAnswer) {
+                    NSLog(@"%@",memberCountAnswer.onlinesArray);
                 } fail:^(FPNError * _Nullable error) {
-
-                    NSLog(@"%@",error);
-
+                    
                 }];
 
             }else if (indexPath.row == 7){//获取用户在哪些组里
@@ -908,21 +905,7 @@
 
                         }];
 
-                    }else if (indexPath.row == 1){//踢掉一个链接（只对多用户登录有效，不能踢掉自己，可以用来实现同类设备，只容许一个登录）
-
-                        [self.client kickoutWithEndPoint:@"endpoint"
-                                                 timeout:10
-                                                 success:^{
-
-                            NSLog(@"kickoutWithEndPoint success");
-
-                        } fail:^(FPNError * _Nullable error) {
-
-                            NSLog(@"%@",error);
-
-                        }];
-
-                    }else if (indexPath.row == 2){//添加key_value形式的变量（例如设置客户端信息，会保存在当前链接中，客户端可以获取到）
+                    }else if (indexPath.row == 1){//添加key_value形式的变量（例如设置客户端信息，会保存在当前链接中，客户端可以获取到）
 
                         [self.client addAttrsWithAttrs:@{@"key2":@"value2"}
                                                timeout:10
@@ -937,7 +920,7 @@
                         }];
 
 
-                    }else if (indexPath.row == 3){//获取attrs
+                    }else if (indexPath.row == 2){//获取attrs
 
 
                         [self.client getAttrsWithTimeout:10
@@ -952,7 +935,7 @@
                         }];
 
 
-                    }else if (indexPath.row == 4){//检测离线聊天  只有通过Chat类接口才会产生
+                    }else if (indexPath.row == 3){//检测离线聊天  只有通过Chat类接口才会产生
 
 
                         [self.client getUnreadMessagesWithClear:NO
@@ -969,7 +952,7 @@
 
 
 
-                    }else if (indexPath.row == 5){//清除离线聊天提醒
+                    }else if (indexPath.row == 4){//清除离线聊天提醒
 
                         [self.client cleanUnreadMessagesWithTimeout:10
                                                             success:^{
@@ -983,7 +966,7 @@
                         }];
 
 
-                    }else if (indexPath.row == 6){//获取所有聊天的会话（p2p用户和自己也会产生会话 ，group）
+                    }else if (indexPath.row == 5){//获取所有聊天的会话（p2p用户和自己也会产生会话 ，group）
 
                         [self.client getAllSessionsWithTimeout:10
                                                        success:^(RTMP2pGroupMemberAnswer * _Nullable memberAnswer) {
@@ -999,7 +982,7 @@
                         }];
 
 
-                    }else if (indexPath.row == 7){//获取在线用户列表，限制每次最多获取200个
+                    }else if (indexPath.row == 6){//获取在线用户列表，限制每次最多获取200个
 
                         [self.client getOnlineUsers:@[@(666),@(777)]
                                             timeout:10
@@ -1013,7 +996,7 @@
 
                         }];
 
-                    }else if (indexPath.row == 8){//设置用户自己的公开信息或者私有信息
+                    }else if (indexPath.row == 7){//设置用户自己的公开信息或者私有信息
                             [self.client setUserInfoWithOpenInfo:@"open123"
                                                       privteinfo:@"pri123"
                                                          timeout:10
@@ -1027,7 +1010,7 @@
 
                             }];
 
-                    }else if (indexPath.row == 9){//获取用户自己的公开信息和私有信息
+                    }else if (indexPath.row == 8){//获取用户自己的公开信息和私有信息
                                 [self.client getUserInfoWithTimeout:10
                                                             success:^(RTMInfoAnswer * _Nullable info) {
 
@@ -1039,7 +1022,7 @@
 
                                 }];
 
-                    }else if (indexPath.row == 10){//获取其他用户的公开信息，每次最多获取100人
+                    }else if (indexPath.row == 9){//获取其他用户的公开信息，每次最多获取100人
                                 [self.client getUserOpenInfo:@[@(666)]
                                                      timeout:10
                                                      success:^(RTMAttriAnswer * _Nullable info) {
@@ -1052,7 +1035,7 @@
 
                                 }];
 
-                    }else if (indexPath.row == 11){//获取存储的数据信息
+                    }else if (indexPath.row == 10){//获取存储的数据信息
                                 [self.client getUserValueInfoWithKey:@"kkk"
                                                              timeout:10
                                                              success:^(RTMInfoAnswer * _Nullable valueInfo) {
@@ -1065,7 +1048,7 @@
 
                                 }];
 
-                    }else if (indexPath.row == 12){//设置存储的数据信息
+                    }else if (indexPath.row == 11){//设置存储的数据信息
                                 [self.client setUserValueInfoWithKey:@"kkk"
                                                                value:@"vvvv123"
                                                              timeout:10
@@ -1079,7 +1062,7 @@
 
                                 }];
 
-                    }else if (indexPath.row == 13){//删除存储的数据信息
+                    }else if (indexPath.row == 12){//删除存储的数据信息
                                 [self.client deleteUserDataWithKey:@"kkk"
                                                            timeout:10
                                                            success:^{
@@ -1648,7 +1631,6 @@
         @{
             @"typeName":@"用户接口",
             @"names":@[@"客户端主动断开",
-                       @"踢掉一个链接（只对多用户登录有效，不能踢掉自己，可以用来实现同类设备，只容许一个登录）",
                        @"添加key_value形式的变量（例如设置客户端信息，会保存在当前链接中，客户端可以获取到）",
                        @"获取attrs",
                        @"检测离线聊天  只有通过Chat类接口才会产生",

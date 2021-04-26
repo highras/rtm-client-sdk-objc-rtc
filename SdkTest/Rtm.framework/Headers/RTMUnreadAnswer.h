@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RTMUnreadAnswer : RTMBaseAnswer
 
 @property(nonatomic,strong)NSDictionary * unreadDictionary;
-//@property(nonatomic,strong)NSDictionary * lastMsgTimeDictionary;
+@property(nonatomic,strong)NSDictionary * lastMsgTimeDictionary;
 
 @end
 
