@@ -63,6 +63,7 @@
 -(void)_initVoice{
     
     [self.client initVoiceClientWithTimeout:10
+                                dualChannel: NO
                                     success:^{
         
         NSLog(@"语音初始化成功");

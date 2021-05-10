@@ -19,10 +19,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /// 实时语音初始化 如果使用实时语音功能需要调用此接口 每个client只需要调用一次成功后即可
+/// @param dualChannel 是否双声道  默认NO单声道
 /// @param timeout 请求超时时间 秒
 /// @param successCallback 成功回调
 /// @param failCallback 失败回调
 -(void)initVoiceClientWithTimeout:(int)timeout
+                      dualChannel:(BOOL)dualChannel
                           success:(void(^)(void))successCallback
                              fail:(RTMAnswerFailCallBack)failCallback;
 
