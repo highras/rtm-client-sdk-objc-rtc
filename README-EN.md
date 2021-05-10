@@ -87,6 +87,7 @@ self.voiceEndpoint = @"";
      
 //3.voice initialization after successful login
 [self.client initVoiceClientWithTimeout:10
+                            dualChannel:NO
                                 success:nil 
                             connectFail:nil];
          
