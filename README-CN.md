@@ -86,6 +86,7 @@ self.voiceEndpoint = @"";
      
 //3.登录成功后 语音初始化
 [self.client initVoiceClientWithTimeout:10
+                            dualChannel: NO
                                 success:nil 
                             connectFail:nil];
          
