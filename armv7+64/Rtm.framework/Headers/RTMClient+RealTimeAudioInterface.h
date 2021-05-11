@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
                         timeout:(int)timeout
                         success:(void(^)(RTMVoiceEnterRoomAnswer * answer))successCallback
                            fail:(RTMAnswerFailCallBack)failCallback;
-//设置当前活跃房间  默认-1为没有设置活跃房间 同时加入多个房间 只会接收和发送这个房间的声音（不会持久化）  也可通过该接口设置-1  来暂时关闭实时语音功能（例如录音前 设置-1 完成后恢复到活跃房间）
+//设置当前活跃房间  默认-1为没有设置活跃房间 同时加入多个房间 只会播放和发送这个房间的声音（不会持久化）  也可通过该接口设置-1  来暂时关闭实时语音功能（例如录音前 设置-1 完成后恢复到活跃房间）
 @property(nonatomic,assign)int64_t voiceActiveRoom;
 //默认闭麦（不会持久化 重新设置活跃房间会自动恢复默认闭麦状态）
 @property(nonatomic,assign)BOOL isOpenVoiceSpeak;

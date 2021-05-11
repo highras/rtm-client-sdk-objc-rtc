@@ -85,7 +85,7 @@
         //创建成功后会自动加入该房间
     
         self.client.voiceActiveRoom = 111;
-        //可同时加入多个房间  但是只会收发 voiceActiveRoom 活跃房间的实时语音  默认-1为未设置  语音结束后设置为-1
+        //可同时加入多个房间  但是只会播放发送 voiceActiveRoom 活跃房间的实时语音  默认-1为未设置  语音结束后设置为-1
         //voiceActiveRoom 只会对已加入成功的房间设置生效
         
         //每次设置voiceActiveRoom后  isOpenVoicePlay为YES  isOpenVoiceSpeak为NO
@@ -118,7 +118,7 @@
         NSLog(@"加入房间成功");
         
         self.client.voiceActiveRoom = 666;
-        //可同时加入多个房间  但是只会收发 voiceActiveRoom 活跃房间的实时语音  默认-1为未设置  语音结束后设置为-1
+        //可同时加入多个房间  但是只会播放发送 voiceActiveRoom 活跃房间的实时语音  默认-1为未设置  语音结束后设置为-1
         //voiceActiveRoom 只会对已加入成功的房间设置生效
         
         //每次设置voiceActiveRoom后  isOpenVoicePlay为YES  isOpenVoiceSpeak为NO
