@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)BOOL isOpenVoiceSpeak;
 //默认播放房间声音（不会持久化 重新设置活跃房间会自动恢复默认状态）
 @property(nonatomic,assign)BOOL isOpenVoicePlay;
-@property(nonatomic,assign)RTMClientConnectStatus voiceConnectStatus;
+
 //---------------------------------------------------------------------------------------------------
 
 
