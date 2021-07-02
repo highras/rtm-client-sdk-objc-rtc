@@ -1,6 +1,6 @@
 
 
-iOS RTM Usage document (integration + interface description)
+iOS RTM Real time voice Usage document (integration + interface description)
 ================================
 
 * [version support](#versionsupport)
