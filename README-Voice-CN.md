@@ -52,7 +52,8 @@ iOS RTM实时语音使用文档 （集成+接口说明）
 -(void)inviteIntoVoiceRoomNotificationWithRoomId:(int64_t)roomId userId:(int64_t)userId;
 //被强制拉入房间结果
 -(void)forceInviteIntoVoiceRoomNotificationWithRoomId:(int64_t)roomId error:(FPNError * _Nullable)error;
-
+//权限命令通知
+-(void)pushVideoAdminCommand:(NSArray*)uids command:(int)type;
 ```
 
 
@@ -85,10 +86,7 @@ self.voiceEndpoint = @"";
                     
      
 //3.登录成功后 语音初始化
-[self.client initVoiceClientWithTimeout:10
-                            dualChannel: NO
-                                success:nil 
-                            connectFail:nil];
+[self.client setAudioEngineWithDualChannel:NO];
          
          
 //4.加入语音房间

@@ -52,7 +52,8 @@ iOS RTM Usage document (integration + interface description)
 -(void)inviteIntoVoiceRoomNotificationWithRoomId:(int64_t)roomId userId:(int64_t)userId;
 //forced invited into the room
 -(void)forceInviteIntoVoiceRoomNotificationWithRoomId:(int64_t)roomId error:(FPNError * _Nullable)error;
-
+//Permission command notification
+-(void)pushVideoAdminCommand:(NSArray*)uids command:(int)type;
 ```
 
 
@@ -86,10 +87,7 @@ self.voiceEndpoint = @"";
                     
      
 //3.voice initialization after successful login
-[self.client initVoiceClientWithTimeout:10
-                            dualChannel:NO
-                                success:nil 
-                            connectFail:nil];
+[self.client setAudioEngineWithDualChannel:NO];
          
          
 //4.join voice room
