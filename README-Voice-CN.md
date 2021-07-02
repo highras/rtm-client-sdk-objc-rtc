@@ -53,7 +53,7 @@ iOS RTM实时语音使用文档 （集成+接口说明）
 //被强制拉入房间结果
 -(void)forceInviteIntoVoiceRoomNotificationWithRoomId:(int64_t)roomId error:(FPNError * _Nullable)error;
 //权限命令通知
--(void)pushVideoAdminCommand:(NSArray*)uids command:(int)type;
+-(void)pushVoiceAdminCommand:(NSArray*)uids command:(int)type;
 ```
 
 
