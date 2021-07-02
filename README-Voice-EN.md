@@ -53,7 +53,7 @@ iOS RTM Usage document (integration + interface description)
 //forced invited into the room
 -(void)forceInviteIntoVoiceRoomNotificationWithRoomId:(int64_t)roomId error:(FPNError * _Nullable)error;
 //Permission command notification
--(void)pushVideoAdminCommand:(NSArray*)uids command:(int)type;
+-(void)pushVoiceAdminCommand:(NSArray*)uids command:(int)type;
 ```
 
 
