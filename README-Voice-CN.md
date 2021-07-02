@@ -74,7 +74,7 @@ self.client = [RTMClient clientWithEndpoint:
                                      config:
                                  autoRelogin:];
 self.client.voiceDelegate = self;
-self.voiceEndpoint = @"";
+self.rtcEndpoint = @"";
 
 //2.登录
 [self.client loginWithToken:
