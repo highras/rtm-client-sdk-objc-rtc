@@ -37,5 +37,16 @@
 #import <Rtm/RTMClient+RealTimeAudioInterface.h>
 
 
+#import <Rtm/RTMClient+RealTimeVideoInterface.h>
+#import <Rtm/RTMVideoProtocol.h>
+
+
+#import <Rtm/FPNNTCPClient.h>
+#import <Rtm/FPNNAnswer.h>
+#import <Rtm/FPNNQuest.h>
+
+
+#import <Rtm/FPNError.h>
+
 
 

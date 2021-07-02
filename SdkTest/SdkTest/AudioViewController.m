@@ -32,21 +32,23 @@
     self.openPlay.frame = CGRectMake(100, 200, 200, 50);
     
     //1 初始化Rtm
-    self.client = [RTMClient clientWithEndpoint:@""
-                                      projectId:0
-                                         userId:0
-                                       delegate:self
-                                         config:nil
-                                    autoRelogin:YES];
+    self.client = [RTMClient clientWithEndpoint:@"rtm endpoint"
+                                  projectId:0
+                                     userId:666
+                                   delegate:self
+                                     config:nil
+                                autoRelogin:YES];
+    
+    self.client.rtcEndpoint = @"rtc endpoint";
     self.client.voiceDelegate = self;
     [self _login];
     
 }
 -(void)_login{
     [self.client loginWithToken:@"token"
-                       language:@""
-                      attribute:nil
-                        timeout:10
+                       language:@"en"
+                      attribute:@{@"aaa":@"bbb"}
+                        timeout:30
                         success:^{
         
         NSLog(@"client 登录成功");
@@ -62,18 +64,16 @@
 }
 -(void)_initVoice{
     
-    [self.client initVoiceClientWithTimeout:10
-                                dualChannel: NO
-                                    success:^{
+    if ([self.client setAudioEngineWithDualChannel:NO].error == nil) {
         
         NSLog(@"语音初始化成功");
         [self _createRoom];
         
-    } fail:^(FPNError * _Nullable error) {
+    }else{
         
-        NSLog(@"语音初始化失败  %@",error);
-        
-    }];
+        NSLog(@"语音初始化失败 ");
+    }
+    
 }
 -(void)_createRoom{
     
@@ -111,13 +111,13 @@
 }
 -(void)_joinVioceRoom{
     
-    [self.client enterVoiceRoomWithRoomId:@(666)
+    [self.client enterVoiceRoomWithRoomId:@(111)
                                   timeout:10
                                   success:^(RTMVoiceEnterRoomAnswer * answer) {
         
         NSLog(@"加入房间成功");
         
-        self.client.voiceActiveRoom = 666;
+        self.client.voiceActiveRoom = 111;
         //可同时加入多个房间  但是只会播放发送 voiceActiveRoom 活跃房间的实时语音  默认-1为未设置  语音结束后设置为-1
         //voiceActiveRoom 只会对已加入成功的房间设置生效
         
@@ -131,7 +131,7 @@
         
     } fail:^(FPNError * _Nullable error) {
         
-        NSLog(@"加入房间失败  %@",error);
+        NSLog(@"加入房间失败~~  %@",error);
         
     }];
 }
@@ -176,7 +176,10 @@
 -(void)forceInviteIntoVoiceRoomNotificationWithRoomId:(int64_t)roomId error:(FPNError * _Nullable)error{
     NSLog(@"forceInviteIntoVoiceRoomNotificationWithRoomId  roomId = %lld error = %@ ",roomId,error);
 }
-
+//权限控制
+-(void)pushVoiceAdminCommand:(NSArray *)uids command:(int)type{
+    
+}
 
 
 

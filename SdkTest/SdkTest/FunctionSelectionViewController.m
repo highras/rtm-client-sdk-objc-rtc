@@ -9,6 +9,7 @@
 #import "FunctionSelectionViewController.h"
 #import "NormalViewController.h"
 #import "AudioViewController.h"
+#import "VideoViewController.h"
 @interface FunctionSelectionViewController ()
 
 @end
@@ -34,6 +35,14 @@
     [audioButton addTarget:self action:@selector(audioClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:audioButton];
     
+    
+    UIButton * videoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [videoButton setTitle:@"实时视频" forState:UIControlStateNormal];
+    videoButton.frame = CGRectMake(100, 300, 200, 50);
+    videoButton.backgroundColor = [UIColor orangeColor];
+    [videoButton addTarget:self action:@selector(videoClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:videoButton];
+    
 }
 -(void)normalClick{
     [self.navigationController pushViewController:[NormalViewController new] animated:YES];
@@ -41,6 +50,10 @@
 -(void)audioClick{
     [self.navigationController pushViewController:[AudioViewController new] animated:YES];
 }
+-(void)videoClick{
+    [self.navigationController pushViewController:[VideoViewController new] animated:YES];
+}
+
 /*
 #pragma mark - Navigation
 

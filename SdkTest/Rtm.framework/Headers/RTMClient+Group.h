@@ -196,6 +196,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 获取group中的所有member
 /// @param groupId int64 群组id
+/// @param online 是否在线
 /// @param timeout 请求超时时间 秒
 /// @param successCallback 成功回调
 /// @param failCallback 失败回调

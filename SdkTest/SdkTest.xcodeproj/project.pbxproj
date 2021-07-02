@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		560FB14F25CB9246009008A5 /* UIImage+RTM.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FB14E25CB9246009008A5 /* UIImage+RTM.m */; };
 		56597D532599E12200C02C77 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56597D522599E12200C02C77 /* AVFoundation.framework */; };
+		567A5EED268D94C1008B48FD /* VideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 567A5EEC268D94C1008B48FD /* VideoViewController.m */; };
 		568A8F34255BE12B008805B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 568A8F32255BE12B008805B3 /* Main.storyboard */; };
 		568A8F37255BE12B008805B3 /* SdkTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 568A8F35255BE12B008805B3 /* SdkTest.xcdatamodeld */; };
 		568A8F3C255BE12D008805B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 568A8F3A255BE12D008805B3 /* LaunchScreen.storyboard */; };
@@ -59,6 +60,8 @@
 		560FB14D25CB9246009008A5 /* UIImage+RTM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+RTM.h"; sourceTree = "<group>"; };
 		560FB14E25CB9246009008A5 /* UIImage+RTM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RTM.m"; sourceTree = "<group>"; };
 		56597D522599E12200C02C77 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		567A5EEB268D94C1008B48FD /* VideoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoViewController.h; sourceTree = "<group>"; };
+		567A5EEC268D94C1008B48FD /* VideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoViewController.m; sourceTree = "<group>"; };
 		568A8F26255BE12B008805B3 /* SdkTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SdkTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		568A8F33255BE12B008805B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		568A8F36255BE12B008805B3 /* SdkTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SdkTest.xcdatamodel; sourceTree = "<group>"; };
@@ -181,6 +184,8 @@
 				56B34600260AE2F90072DE21 /* NormalViewController.m */,
 				56B345F6260AE2E90072DE21 /* AudioViewController.h */,
 				56B345F7260AE2E90072DE21 /* AudioViewController.m */,
+				567A5EEB268D94C1008B48FD /* VideoViewController.h */,
+				567A5EEC268D94C1008B48FD /* VideoViewController.m */,
 				560FB14D25CB9246009008A5 /* UIImage+RTM.h */,
 				560FB14E25CB9246009008A5 /* UIImage+RTM.m */,
 				568A8F90255BE159008805B3 /* NSObject+Description.h */,
@@ -439,6 +444,7 @@
 				568A8FCC255BE2FB008805B3 /* NarrowBandWavToAmr.mm in Sources */,
 				568A8FC9255BE2FB008805B3 /* wavwriter.c in Sources */,
 				56B345F8260AE2E90072DE21 /* AudioViewController.m in Sources */,
+				567A5EED268D94C1008B48FD /* VideoViewController.m in Sources */,
 				568A8FCA255BE2FB008805B3 /* VoiceConverter.mm in Sources */,
 				560FB14F25CB9246009008A5 /* UIImage+RTM.m in Sources */,
 			);
