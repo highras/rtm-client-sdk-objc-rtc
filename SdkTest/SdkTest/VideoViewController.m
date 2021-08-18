@@ -122,7 +122,7 @@
     uidsItemView.frame = CGRectMake(200, 550, 120, 160);
     [self.view addSubview:uidsItemView];
     [uids addObject:uidsItemView];
-
+//
     [self.client subscribeVideoWithRoomId:@(666)
                                       uid:@[@(777)]
                            containerViews:uids
