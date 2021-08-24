@@ -15,6 +15,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface FPNNTCPClient : NSObject
 
+
 @property (nonatomic,strong) NSString * ocFpnnSdkVersion;
 @property (nonatomic,assign) int questTimeout;
 @property (nonatomic,assign) BOOL autoReconnect;//默认YES 发送操作时 如果为未连接 会自动连接后发送  非断开后自动重新连接
@@ -37,6 +38,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype _Nullable)clientWithEndpoint:(NSString * _Nonnull)endpoint pid:(NSString *)pid;;
 //+ (instancetype _Nullable)clientWithHost:(NSString * _Nonnull)host port:(int)port;
 
+-(NSString*)getIp;
+-(int)getPort;
+-(BOOL)isIpv4;
 
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
