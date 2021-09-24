@@ -92,13 +92,13 @@ self.rtcEndpoint = @"";
          
 //4.join voice room
 [self.client enterVoiceRoomWithRoomId:@(0)
+                         enableRecord:NO
                               timeout:10
                               success:^(RTMVoiceEnterRoomAnswer * answer) {
 
         //set voice active room after joining successfully
         
 } fail:nil];
-
            
 ```
 
