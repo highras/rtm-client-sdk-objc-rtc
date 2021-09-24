@@ -58,7 +58,7 @@
                         success:^{
         
         //视频初始化
-        RTMBaseAnswer * an = [self.client setVideoEngine];
+        RTMBaseAnswer * an = [self.client setVideoEngine:RTMCaptureVideoDefault];
         if (an.error == nil) {
             NSLog(@"登录成功 + 视频初始化成功");
         }else{
@@ -167,6 +167,7 @@
 -(void)_createRoomButtonClick{
     
     [self.client createVideoRoomWithId:@(666)
+                          enableRecord:NO
                                timeout:10
                                success:^(RTMVideoCreateRoomAnswer * _Nonnull answer) {
         

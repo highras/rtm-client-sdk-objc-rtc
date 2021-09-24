@@ -13,7 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RTMVideoRoomMembersAnswer : RTMBaseAnswer
 
 @property(nonatomic,strong)NSArray <NSNumber*>* userIds;
-@property(nonatomic,strong)NSArray <NSNumber*>* managers;
+@property(nonatomic,strong)NSArray <NSNumber*>* administrators;
+@property(nonatomic,assign)int64_t owner;
 
 @end
 

@@ -17,10 +17,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)BOOL flags;
 @property(nonatomic,assign)int64_t timestamp;
 @property(nonatomic,assign)int rotation;
-@property(nonatomic,assign)int64_t version;//gop
+@property(nonatomic,assign)int version;//gop
 @property(nonatomic,assign)int64_t uid;
 @property(nonatomic,assign)int64_t rid;
 @property(nonatomic,assign)int64_t seq;//
+@property(nonatomic,assign)int captureLevel;//
 @end
 
 NS_ASSUME_NONNULL_END

@@ -16,6 +16,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger, RTMCaptureVideoLevel){
+    
+    RTMCaptureVideoDefault = 1,
+    RTMCaptureVideoMiddle = 2,
+    RTMCaptureVideoHigh = 3,
+    
+};
+
 @interface RTMClient (RealTimeVideoInterface)
 
 //自己镜像view
@@ -26,10 +34,19 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)updateChildrenPreviewFrame;
 
 
+- (CGFloat)getMaxExposureValue;
+- (CGFloat)getMinExposureValue;
+@property(nonatomic,assign)CGFloat exposure;//曝光 0为默认
+
+
+
 //实时视频初始化
--(RTMBaseAnswer *)setVideoEngine;
+-(RTMBaseAnswer *)setVideoEngine:(RTMCaptureVideoLevel)captureVideoLevel;
 //实时视频反初始化
 -(void)videoClientDispose;
+//清晰度 默认 RTMRealTimeVideoDefault
+@property(nonatomic,assign)RTMCaptureVideoLevel captureVideoLevel;
+@property(nonatomic,assign)BOOL watchHoldPortraitScreen;
 //旋转摄像头
 -(BOOL)switchCamera;
 
@@ -51,16 +68,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 创建房间
 /// @param roomId 房间id int64
+/// @param enableRecord 是否开启录制
 /// @param timeout 请求超时时间 秒
 /// @param successCallback 成功回调
 /// @param failCallback 失败回调
 -(void)createVideoRoomWithId:(NSNumber * _Nonnull)roomId
+                enableRecord:(BOOL)enableRecord
                      timeout:(int)timeout
                      success:(void(^)(RTMVideoCreateRoomAnswer * answer))successCallback
                         fail:(RTMAnswerFailCallBack)failCallback;
 
 
-/// 加入语音房间
+/// 加入视频房间
 /// @param roomId 房间id int64
 /// @param timeout 请求超时时间 秒
 /// @param successCallback 成功回调

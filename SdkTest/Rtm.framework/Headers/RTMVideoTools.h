@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <VideoToolbox/VideoToolbox.h>
 #import <AVFoundation/AVFoundation.h>
+#import "RTMClient+RealTimeVideoInterface.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RTMVideoTools : NSObject
@@ -16,6 +17,13 @@ NS_ASSUME_NONNULL_BEGIN
 + (AVCaptureSessionPreset)getResolutionRatioWithHeight:(int)height;
 + (int)getResolutionRatioWidthWithHeight:(int)height;
 + (AVCaptureVideoOrientation)getVideoOrientationWithScreenOrientation:(UIDeviceOrientation)orientation;
++ (int)getFrame:(RTMCaptureVideoLevel)videoLevel;
++ (int)getWidth:(RTMCaptureVideoLevel)videoLevel;
++ (int)getHeight:(RTMCaptureVideoLevel)videoLevel;
++ (int)getBitRate:(RTMCaptureVideoLevel)videoLevel;
++ (int)getDeviceOrientation:(UIInterfaceOrientation)direction;
+
+//+ (int)getFrame:(RTMCaptureVideoLevel)videoLevel;
 @end
 
 NS_ASSUME_NONNULL_END

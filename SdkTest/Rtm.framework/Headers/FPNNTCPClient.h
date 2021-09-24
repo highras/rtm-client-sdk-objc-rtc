@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype _Nullable)initWithEndpoint:(NSString * _Nonnull)endpoint pid:(NSString *)pid;
 //- (instancetype _Nullable)initWithHost:(NSString * _Nonnull)host port:(int)port;
 
-+ (instancetype _Nullable)clientWithEndpoint:(NSString * _Nonnull)endpoint pid:(NSString *)pid;;
++ (instancetype _Nullable)clientWithEndpoint:(NSString * _Nonnull)endpoint pid:(NSString *)pid;
 //+ (instancetype _Nullable)clientWithHost:(NSString * _Nonnull)host port:(int)port;
 
 -(NSString*)getIp;
