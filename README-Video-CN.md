@@ -87,7 +87,7 @@ self.rtcEndpoint = @"";
 [self.client setVideoEngine];
          
          
-//4.加入语音房间
+//4.加入视频房间
 [self.client enterVideoRoomWithRoomId:@(0)
                               timeout:10
                               success:^(RTMVideoEnterRoomAnswer * answer) {
