@@ -11,7 +11,7 @@ iOS RTM实时视频使用文档 （集成+接口说明）
 <a id="版本支持">版本支持</a>
 ================
 * 语言:Objective-C  
-* 最低支持 iOS9 系统
+* 最低支持 iOS10 系统
 
 
 
@@ -69,8 +69,7 @@ self.client = [RTMClient clientWithEndpoint:
                                   projectId:
                                      userId:
                                    delegate:
-                                     config:
-                                 autoRelogin:];
+                                     config:];
 self.client.videoDelegate = self;
 self.rtcEndpoint = @"";
 
@@ -82,13 +81,11 @@ self.rtcEndpoint = @"";
                     success:nil 
                 connectFail:nil];
                     
-     
-//3.登录成功后 视频初始化
-[self.client setVideoEngine];
          
          
-//4.加入视频房间
+//3.加入视频房间
 [self.client enterVideoRoomWithRoomId:@(0)
+                    captureVideoLevel:RTMCaptureVideoDefault
                               timeout:10
                               success:^(RTMVideoEnterRoomAnswer * answer) {
 
@@ -96,7 +93,7 @@ self.rtcEndpoint = @"";
         
 } fail:nil];
 
-//5.打开摄像头 获取镜像View
+//4.打开摄像头 获取镜像View
 [self.client openCamera];
 [self.view addSubview:self.client.mySelfPreview];
 
