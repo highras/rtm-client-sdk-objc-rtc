@@ -98,7 +98,7 @@ self.rtcEndpoint = @"";
 [self.view addSubview:self.client.mySelfPreview];
 
 
-//6.订阅用户
+//5.订阅用户
 [self.client subscribeVideoWithRoomId:
                                   uid:
                        containerViews:
