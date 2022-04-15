@@ -32,16 +32,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy)FPNNConnectionCloseCallBack connectionCloseCallBack;
 @property (nonatomic,copy)FPNNListenAndReplyCallBack listenAndReplyCallBack;
 
-- (instancetype _Nullable)initWithEndpoint:(NSString * _Nonnull)endpoint pid:(NSString *)pid;
+//- (instancetype _Nullable)initWithEndpoint:(NSString * _Nonnull)endpoint pid:(NSString *)pid;
 //- (instancetype _Nullable)initWithHost:(NSString * _Nonnull)host port:(int)port;
 
 + (instancetype _Nullable)clientWithEndpoint:(NSString * _Nonnull)endpoint pid:(NSString *)pid;
-//+ (instancetype _Nullable)clientWithHost:(NSString * _Nonnull)host port:(int)port;
++ (instancetype _Nullable)clientWithHost:(NSString * _Nonnull)host port:(int)port pid:(NSString *)pid;
 
+@property(nonatomic,strong)NSString * endpoint;
 -(NSString*)getIp;
 -(int)getPort;
 -(BOOL)isIpv4;
-
+//-(void)resetIp:(NSString * )newIp port:(int)newPort;
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
 

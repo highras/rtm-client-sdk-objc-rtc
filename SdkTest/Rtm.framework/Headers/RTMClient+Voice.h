@@ -26,6 +26,7 @@ typedef void (^RTMVoiceConnectFailCallBack)(void);
 -(void)addRoomCacheWithRoomId:(NSString*)roomId;
 -(void)removeRoomCacheWithRoomId:(NSString*)roomId;
 -(RTMAnswer*)handldVoicePushWithMethod:(NSString*)method data:(NSDictionary*)data;
+-(void)initVoiceClient:(NSString *)voiceClientEndpoint;
 @property(nonatomic,assign)RTMClientConnectStatus voiceConnectStatus;
 
 @end

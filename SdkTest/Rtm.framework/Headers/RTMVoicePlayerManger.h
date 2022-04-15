@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)RTVAudioEngine * audioEngine;
 + (id)initWithRTMClient:(RTMClient*)client dualChannel:(BOOL)dualChannel;
 -(void)receiveOpusData:(NSDictionary*)pcmData;
+-(void)receiveP2pOpusData:(NSDictionary*)pcmData;
 -(void)cleanCacheData;
 -(void)openSpeak;
 -(void)closeSpeak;

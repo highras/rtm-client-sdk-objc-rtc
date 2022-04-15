@@ -17,16 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RTMClient (RealTimeAudioInterface)
 
-
-/// 实时语音初始化 如果使用实时语音功能需要调用此接口 每个client只需要调用一次成功后即可
-/// @param isDualChannel 是否双声道  默认NO单声道
--(RTMBaseAnswer *)setAudioEngineWithDualChannel:(BOOL)isDualChannel;
-
-
-/// 反初始化 对应 setAudioEngineWithDualChannel
--(void)voiceClientDispose;
-
-
 /// 创建语音房间 创建成功后会自动加入（有可能会加入失败）
 /// @param roomId 房间id int64
 /// @param timeout 请求超时时间 秒
@@ -58,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 //默认播放房间声音（不会持久化 重新设置活跃房间会自动恢复默认状态）
 @property(nonatomic,assign)BOOL isOpenVoicePlay;
 
-@property(nonatomic,assign)RTMClientConnectStatus voiceConnectStatus;
+
 
 //---------------------------------------------------------------------------------------------------
 

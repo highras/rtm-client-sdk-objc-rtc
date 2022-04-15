@@ -12,7 +12,7 @@
 @property(nonatomic,strong)UIButton * joinRoomButton;
 @property(nonatomic,strong)UIButton * createRoomButton;
 @property(nonatomic,strong)UIButton * subscribeUserButton;
-@property(nonatomic,strong)UIButton * exitRoomButton;
+@property(nonatomic,strong)UIButton * audioManagerButton;
 @property(nonatomic,strong)RTMClient * client;
 @end
 
@@ -35,35 +35,34 @@
     [self.view addSubview:self.subscribeUserButton];
     
     
-    self.exitRoomButton.frame = CGRectMake(100, 450, 100, 40);
-    [self.view addSubview:self.exitRoomButton];
+    self.audioManagerButton.frame = CGRectMake(100, 450, 100, 40);
+    [self.view addSubview:self.audioManagerButton];
     
     
     
-    self.client = [RTMClient clientWithEndpoint:@"rtm endpoint"
-                                  projectId:0
+    self.client = [RTMClient clientWithEndpoint:@""
+                                      projectId:0
                                      userId:666
                                    delegate:self
-                                     config:nil
-                                autoRelogin:YES];
+                                     config:nil];
     
-    self.client.rtcEndpoint = @"rtc endpoint";
+    self.client.rtcEndpoint = @"0";
     self.client.videoDelegate = self;
     
     
-    [self.client loginWithToken:@"token"
+    [self.client loginWithToken:@"0"
                        language:@"en"
                       attribute:@{@"aaa":@"bbb"}
                         timeout:30
                         success:^{
         
-        //视频初始化
-        RTMBaseAnswer * an = [self.client setVideoEngine:RTMCaptureVideoDefault];
-        if (an.error == nil) {
-            NSLog(@"登录成功 + 视频初始化成功");
-        }else{
-            NSLog(@"%@",an.error);
-        }
+//        //视频初始化
+//        RTMBaseAnswer * an = [self.client setVideoEngine:RTMCaptureVideoDefault];
+//        if (an.error == nil) {
+//            NSLog(@"登录成功 + 视频初始化成功");
+//        }else{
+//            NSLog(@"%@",an.error);
+//        }
         
         
     } connectFail:^(FPNError * _Nullable error) {
@@ -141,6 +140,7 @@
 -(void)_joinRoomButtonClick{
     
     [self.client enterVideoRoomWithRoomId:@(666)
+                        captureVideoLevel:RTMCaptureVideoDefault
                                   timeout:10
                                   success:^(RTMVideoEnterRoomAnswer * _Nonnull answer) {
         
@@ -167,6 +167,7 @@
 -(void)_createRoomButtonClick{
     
     [self.client createVideoRoomWithId:@(666)
+                     captureVideoLevel:RTMCaptureVideoDefault
                           enableRecord:NO
                                timeout:10
                                success:^(RTMVideoCreateRoomAnswer * _Nonnull answer) {
@@ -179,20 +180,15 @@
     }];
     
 }
--(void)_exitRoomButtonClick{
-    [self.client exitVideoRoomWithRoomId:@(666)
-                                 timeout:11
-                                 success:^{
-        
-        
-        NSLog(@"退出成功");
-        
-        
-    } fail:^(FPNError * _Nullable error) {
-        
-        NSLog(@"退出失败%@",error);
-        
-    }];
+-(void)_audioButtonClick{
+    
+    if (self.client.isOpenVideoRoomVoicePlay) {
+        [self.client closeVideoRoomVoicePlay];
+        [self.client closeVideoRoomVoiceSpeak];
+    }else{
+        [self.client openVideoRoomVoicePlay];
+        [self.client openVideoRoomVoiceSpeak];
+    }
 }
 -(UIButton*)createRoomButton{
     if (_createRoomButton == nil) {
@@ -224,15 +220,15 @@
     }
     return _subscribeUserButton;
 }
--(UIButton*)exitRoomButton{
-    if (_exitRoomButton == nil) {
-        _exitRoomButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _exitRoomButton.backgroundColor = [UIColor orangeColor];
-        [_exitRoomButton setTitle:@"退出房间" forState:UIControlStateNormal];
-        [_exitRoomButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_exitRoomButton addTarget:self action:@selector(_exitRoomButtonClick) forControlEvents:UIControlEventTouchUpInside];
+-(UIButton*)audioManagerButton{
+    if (_audioManagerButton == nil) {
+        _audioManagerButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _audioManagerButton.backgroundColor = [UIColor orangeColor];
+        [_audioManagerButton setTitle:@"音频控制" forState:UIControlStateNormal];
+        [_audioManagerButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_audioManagerButton addTarget:self action:@selector(_audioButtonClick) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _exitRoomButton;
+    return _audioManagerButton;
 }
 
 

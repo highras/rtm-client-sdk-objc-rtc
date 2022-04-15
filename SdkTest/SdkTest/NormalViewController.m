@@ -182,8 +182,7 @@
                                               projectId:0
                                                  userId:666
                                                delegate:self
-                                                 config:nil
-                                            autoRelogin:YES];
+                                                 config:nil];
 
             if (self.client) {
                 [self.client loginWithToken:@"0"

@@ -15,6 +15,14 @@
 // 3.添加库libresolv.9.tbd
 // 4.Info.plist 添加麦克风权限 Privacy - Microphone Usage Description
 
+
+#import <Rtm/FPNNTCPClient.h>
+#import <Rtm/FPNNAnswer.h>
+#import <Rtm/FPNNQuest.h>
+#import <Rtm/FPNError.h>
+
+
+//im
 #import <Rtm/RTMClient.h>
 #import <Rtm/RTMAnswer.h>
 #import <Rtm/RTMClient+User.h>
@@ -34,20 +42,14 @@
 #import <Rtm/RTMTranslatedInfo.h>
 #import <Rtm/RTMAudioTools.h>
 #import <Rtm/RTMAudioModel.h>
+
+
+//realtime voice
+
 #import <Rtm/RTMClient+RealTimeAudioInterface.h>
+#import <Rtm/RTMClient+RealTimeP2PAudioInterface.h>
 
-
+//realtime video
 #import <Rtm/RTMClient+RealTimeVideoInterface.h>
-#import <Rtm/RTMVideoProtocol.h>
-
-
-#import <Rtm/FPNNTCPClient.h>
-#import <Rtm/FPNNAnswer.h>
-#import <Rtm/FPNNQuest.h>
-
-
-#import <Rtm/FPNError.h>
-
-
-
+#import <Rtm/RTMClient+RealTimeP2PVideoInterface.h>
 

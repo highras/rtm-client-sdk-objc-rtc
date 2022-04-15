@@ -45,13 +45,24 @@
     
 }
 -(void)normalClick{
-    [self.navigationController pushViewController:[NormalViewController new] animated:YES];
+    
+    NormalViewController * vc = [NormalViewController new];
+    vc.modalPresentationStyle = 0;
+    [self.navigationController presentViewController:vc animated:YES completion:nil];
+    
 }
 -(void)audioClick{
-    [self.navigationController pushViewController:[AudioViewController new] animated:YES];
+    
+    AudioViewController * vc = [AudioViewController new];
+    vc.modalPresentationStyle = 0;
+    [self.navigationController presentViewController:vc animated:YES completion:nil];
+
 }
 -(void)videoClick{
-    [self.navigationController pushViewController:[VideoViewController new] animated:YES];
+    VideoViewController * vc = [VideoViewController new];
+    vc.modalPresentationStyle = 0;
+    [self.navigationController presentViewController:vc animated:YES completion:nil];
+
 }
 
 /*

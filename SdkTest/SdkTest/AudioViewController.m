@@ -32,29 +32,26 @@
     self.openPlay.frame = CGRectMake(100, 200, 200, 50);
     
     //1 初始化Rtm
-    self.client = [RTMClient clientWithEndpoint:@"rtm endpoint"
-                                  projectId:0
-                                     userId:666
+    self.client = [RTMClient clientWithEndpoint:@""
+                                      projectId:123
+                                     userId:777
                                    delegate:self
-                                     config:nil
-                                autoRelogin:YES];
+                                     config:nil];
     
-    self.client.rtcEndpoint = @"rtc endpoint";
+    self.client.rtcEndpoint = @"";
     self.client.voiceDelegate = self;
     [self _login];
     
 }
 -(void)_login{
-    [self.client loginWithToken:@"token"
+    [self.client loginWithToken:@""
                        language:@"en"
                       attribute:@{@"aaa":@"bbb"}
                         timeout:30
                         success:^{
         
         NSLog(@"client 登录成功");
-        //client登录成功后 需要登录实时语音服务 每个client只需要登录一次即可
-        [self _initVoice];
-        
+        [self _createRoom];
         
     } connectFail:^(FPNError * _Nullable error) {
         
@@ -62,19 +59,7 @@
         
     }];
 }
--(void)_initVoice{
-    
-    if ([self.client setAudioEngineWithDualChannel:NO].error == nil) {
-        
-        NSLog(@"语音初始化成功");
-        [self _createRoom];
-        
-    }else{
-        
-        NSLog(@"语音初始化失败 ");
-    }
-    
-}
+
 -(void)_createRoom{
     
     [self.client createVoiceRoomWithId:@(111)
@@ -230,4 +215,7 @@
     }
     return _openPlay;
 }
+
+
+
 @end
