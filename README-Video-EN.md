@@ -10,7 +10,7 @@ iOS RTM Real time video Usage document (integration + interface description)
 <a id="versionsupport">version support</a>
 ================
 * language:Objective-C  
-* minimum system iOS 9 
+* minimum system iOS 10 
 
 
 
@@ -68,8 +68,7 @@ self.client = [RTMClient clientWithEndpoint:
                                   projectId:
                                      userId:
                                    delegate:
-                                     config:
-                                 autoRelogin:];
+                                     config:];
 self.client.videoDelegate = self;
 self.rtcEndpoint = @"";
 
@@ -81,13 +80,11 @@ self.rtcEndpoint = @"";
                     success:nil 
                 connectFail:nil];
                     
-     
-//3.video init
-[self.client setVideoEngine];
+
          
-         
-//4.join videoRoom
+//3.join videoRoom
 [self.client enterVideoRoomWithRoomId:@(0)
+                    captureVideoLevel:RTMCaptureVideoDefault
                               timeout:10
                               success:^(RTMVideoEnterRoomAnswer * answer) {
 
@@ -95,12 +92,12 @@ self.rtcEndpoint = @"";
         
 } fail:nil];
 
-//5.openCamera getMirrorView
+//4.openCamera getMirrorView
 [self.client openCamera];
 [self.view addSubview:self.client.mySelfPreview];
 
 
-//6.subscribe
+//5.subscribe
 [self.client subscribeVideoWithRoomId:
                                   uid:
                        containerViews:
