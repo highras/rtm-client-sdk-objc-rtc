@@ -26,7 +26,7 @@ iOS RTM Usage document (integration + interface description)
 <a id="versionsupport">version support</a>
 ================
 * language:Objective-C  
-* minimum system iOS 9 
+* minimum system iOS 10
 
 
 
@@ -125,8 +125,7 @@ self.client = [RTMClient clientWithEndpoint:
                                   projectId:
                                      userId:
                                    delegate:
-                                     config:
-                                 autoRelogin:];
+                                     config:];
 //login
  if (self.client) {
  
