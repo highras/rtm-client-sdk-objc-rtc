@@ -72,8 +72,7 @@ self.client = [RTMClient clientWithEndpoint:
                                   projectId:
                                      userId:
                                    delegate:
-                                     config:
-                                 autoRelogin:];
+                                     config:];
 self.client.voiceDelegate = self;
 self.rtcEndpoint = @"";
 
@@ -85,12 +84,10 @@ self.rtcEndpoint = @"";
                     success:nil 
                 connectFail:nil];
                     
-     
-//3.voice initialization after successful login
-[self.client setAudioEngineWithDualChannel:NO];
+
          
          
-//4.join voice room
+//3.join voice room
 [self.client enterVoiceRoomWithRoomId:@(0)
                               timeout:10
                               success:^(RTMVoiceEnterRoomAnswer * answer) {
