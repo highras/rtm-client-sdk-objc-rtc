@@ -25,7 +25,7 @@ iOS RTM 使用文档 （集成+接口说明）
 <a id="版本支持">版本支持</a>
 ================
 * 语言:Objective-C  
-* 最低支持 iOS9 系统
+* 最低支持 iOS10 系统
 
 
 
@@ -124,8 +124,7 @@ self.client = [RTMClient clientWithEndpoint:
                                   projectId:
                                      userId:
                                    delegate:
-                                     config:
-                                 autoRelogin:];
+                                     config:];
 //登录
  if (self.client) {
  
