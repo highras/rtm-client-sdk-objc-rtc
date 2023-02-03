@@ -130,6 +130,7 @@ self.client = [RTMClient clientWithEndpoint:
  if (self.client) {
  
     [self.client loginWithToken:
+                             ts:
                        language:
                       attribute:
                         timeout:
