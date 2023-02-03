@@ -8,6 +8,7 @@
 
 #import "VideoViewController.h"
 #import <Rtm/Rtm.h>
+#import "RTMTokenTest.h"
 @interface VideoViewController ()<RTMProtocol,RTMVideoProtocol>
 @property(nonatomic,strong)UIButton * joinRoomButton;
 @property(nonatomic,strong)UIButton * createRoomButton;
@@ -50,7 +51,9 @@
     self.client.videoDelegate = self;
     
     
-    [self.client loginWithToken:@"0"
+    NSDictionary * tokenDic = [RTMTokenTest getToken:@"" projectId:@"" uid:@"666"];
+    [self.client loginWithToken:[tokenDic objectForKey:@"token"]
+                             ts:[[tokenDic objectForKey:@"ts"] longLongValue]
                        language:@"en"
                       attribute:@{@"aaa":@"bbb"}
                         timeout:30

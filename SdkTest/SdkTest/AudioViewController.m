@@ -10,7 +10,7 @@
 #import "UIImage+RTM.h"
 #import <Rtm/Rtm.h>
 #import "NSObject+Description.h"
-
+#import "RTMTokenTest.h"
 @interface AudioViewController ()<RTMProtocol,RTMVoiceProtocol>
 @property(nonatomic,strong)RTMClient* client;
 @property(nonatomic,strong)UIButton * openSpeak;
@@ -44,7 +44,9 @@
     
 }
 -(void)_login{
-    [self.client loginWithToken:@""
+    NSDictionary * tokenDic = [RTMTokenTest getToken:@"" projectId:@"" uid:@"666"];
+    [self.client loginWithToken:[tokenDic objectForKey:@"token"]
+                             ts:[[tokenDic objectForKey:@"ts"] longLongValue]
                        language:@"en"
                       attribute:@{@"aaa":@"bbb"}
                         timeout:30

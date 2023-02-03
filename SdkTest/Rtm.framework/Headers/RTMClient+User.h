@@ -32,8 +32,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-
-
 /// 添加key_value形式的变量（例如设置客户端信息，会保存在当前链接中，客户端可以获取到）
 /// @param attrs 注意 key value 为 nsstring
 /// @param timeout 请求超时时间 秒
@@ -47,6 +45,8 @@ NS_ASSUME_NONNULL_BEGIN
                            timeout:(int)timeout;
 
 
+
+
 /// 获取attrs
 /// @param timeout 请求超时时间 秒
 /// @param successCallback 成功回调
@@ -55,6 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
                    success:(void(^)(RTMAttriAnswer * _Nullable attri))successCallback
                       fail:(RTMAnswerFailCallBack)failCallback;
 -(RTMAttriAnswer*)getAttrsWithTimeout:(int)timeout;
+
 
 
 /// 检测离线聊天  只有通过Chat类接口 才会产生
@@ -78,6 +79,7 @@ NS_ASSUME_NONNULL_BEGIN
                               success:(void(^)(void))successCallback
                                  fail:(RTMAnswerFailCallBack)failCallback;
 -(RTMBaseAnswer*)cleanUnreadMessagesWithTimeout:(int)timeout;
+
 
 
 /// 获取所有聊天的会话（p2p用户和自己也会产生会话）

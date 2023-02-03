@@ -38,13 +38,14 @@ typedef void (^RTMLoginFailCallBack)(FPNError * _Nullable error);
 
 
 + (nullable instancetype)clientWithEndpoint:(nonnull NSString * )endpoint
-                                   projectId:(int64_t)projectId
-                                      userId:(int64_t)userId
-                                    delegate:(id <RTMProtocol>)delegate
-                                      config:(nullable RTMClientConfig *)config;
+                                  projectId:(int64_t)projectId
+                                     userId:(int64_t)userId
+                                   delegate:(id <RTMProtocol>)delegate
+                                     config:(nullable RTMClientConfig *)config;
 
-
+//两种token生成方式 1.服务端生成token ts传0  2.客户端生成 传对应生成时间ts
 - (void)loginWithToken:(nonnull NSString *)token
+                    ts:(int64_t)ts
               language:(nullable NSString *)language
              attribute:(nullable NSDictionary *)attribute
                timeout:(int)timeout //默认30秒
@@ -61,8 +62,8 @@ typedef void (^RTMLoginFailCallBack)(FPNError * _Nullable error);
 @property (nonatomic,assign,nullable)id <RTMProtocol> delegate;
 
 //YIN
-@property(nonatomic,assign)id <RTMVoiceProtocol> voiceDelegate;
-@property(nonatomic,assign)id <RTMVideoProtocol> videoDelegate;
+@property(nonatomic,weak)id <RTMVoiceProtocol> voiceDelegate;
+@property(nonatomic,weak)id <RTMVideoProtocol> videoDelegate;
 
 @property (nonatomic,strong)NSString * rtcEndpoint;
 

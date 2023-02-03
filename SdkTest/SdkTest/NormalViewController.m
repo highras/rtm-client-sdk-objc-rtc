@@ -12,6 +12,7 @@
 #import "RTMAudioplayer.h"
 #import <Rtm/Rtm.h>
 #import "NSObject+Description.h"
+#import "RTMTokenTest.h"
 #define NSAllLog(FORMAT, ...) fprintf(stderr, "%s:%zd\t%s\n", [[[NSString stringWithUTF8String: __FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat: FORMAT, ## __VA_ARGS__] UTF8String]);
 
 @interface NormalViewController ()<UITableViewDelegate,UITableViewDataSource,RTMProtocol>{
@@ -179,13 +180,15 @@
         if (indexPath.row == 0) {//@[@"验证登录"]
 
             self.client = [RTMClient clientWithEndpoint:@""
-                                              projectId:0
+                                              projectId:11000001
                                                  userId:666
                                                delegate:self
                                                  config:nil];
 
             if (self.client) {
-                [self.client loginWithToken:@"0"
+                NSDictionary * tokenDic = [RTMTokenTest getToken:@"" projectId:@"11000001" uid:@"666"];
+                [self.client loginWithToken:[tokenDic objectForKey:@"token"]
+                                         ts:[[tokenDic objectForKey:@"ts"] longLongValue]
                                    language:@"en"
                                   attribute:@{@"key":@"value"}
                                     timeout:30
@@ -1493,7 +1496,11 @@
 
                     }else if (indexPath.row == 2){//@"文本审核
 
-                        [self.client textReviewWithText:@"hello fuck" timeout:10 success:^(RTMTextReviewAnswer * _Nullable textReview) {
+                      
+                        [self.client textReviewWithText:@"hello fuck"
+                                             strategyId: nil
+                                                timeout:10
+                                                success:^(RTMTextReviewAnswer * _Nullable textReview) {
                             NSLog(@"%@",textReview.rtm_autoDescription);
                         } fail:^(FPNError * _Nullable error) {
                             NSLog(@"%@",error.rtm_autoDescription);

@@ -24,6 +24,7 @@
 #import "RTMTextReviewAnswer.h"
 #import "RTMReviewAnswer.h"
 #import "RTMGetPushAttrsAnswer.h"
+#import "RTMVoiceTranslateAnswer.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RTMClient (Tools)
@@ -168,14 +169,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 文本审核, 返回过滤后的字符串或者返回错误（调用此接口需在管理系统启用文本审核系统）
 /// @param text  需要过滤的文本
+/// @param strategyId 对应文本审核的策略编号 https://docs.ilivedata.com/textcheck/technologydocument/introduction/
 /// @param timeout 请求超时时间 秒
 /// @param successCallback 成功回调
 /// @param failCallback 失败回调
 -(void)textReviewWithText:(NSString * _Nonnull)text
+               strategyId:(NSString * _Nullable) strategyId
                   timeout:(int)timeout
                   success:(void(^)(RTMTextReviewAnswer * _Nullable textReview))successCallback
                      fail:(RTMAnswerFailCallBack)failCallback;
 -(RTMTextReviewAnswer*)textReviewWithText:(NSString * _Nonnull)text
+                               strategyId:(NSString * _Nullable) strategyId
                                   timeout:(int)timeout;
 
 
@@ -184,16 +188,19 @@ NS_ASSUME_NONNULL_BEGIN
 /// 图片审核, （调用此接口需在管理系统启用图片审核系统）调用这个接口的超时时间得加大到120s
 /// @param imageUrl 图片数据 imageUrl imageData 二选一  同时传imageData优先
 /// @param imageData 图片数据 imageUrl imageData 二选一 同时传imageData优先
+/// @param strategyId 对应文本审核的策略编号 https://docs.ilivedata.com/textcheck/technologydocument/introduction/
 /// @param timeout 请求超时时间 秒
 /// @param successCallback 成功回调
 /// @param failCallback 失败回调
 -(void)imageReviewWithSource:(NSString * _Nullable)imageUrl
                    imageData:(NSData * _Nullable)imageData
+                  strategyId:(NSString * _Nullable) strategyId
                      timeout:(int)timeout
                      success:(void(^)(RTMReviewAnswer * _Nullable imageReview))successCallback
                         fail:(RTMAnswerFailCallBack)failCallback;
 -(RTMReviewAnswer*)imageReviewWithSource:(NSString * _Nullable)imageUrl
                                imageData:(NSData * _Nullable)imageData
+                              strategyId:(NSString * _Nullable) strategyId
                                  timeout:(int)timeout;
 
 
@@ -203,6 +210,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param lang 语言
 /// @param codec 编解码 传空 默认AMR_WB
 /// @param srate 采样率 传空 默认为16000
+/// @param strategyId 对应文本审核的策略编号 https://docs.ilivedata.com/textcheck/technologydocument/introduction/
 /// @param timeout 请求超时时间 秒
 /// @param successCallback 成功回调
 /// @param failCallback 失败回调
@@ -211,6 +219,7 @@ NS_ASSUME_NONNULL_BEGIN
                         lang:(NSString * _Nonnull)lang
                        codec:(NSString * _Nullable)codec
                        srate:(int32_t)srate
+                  strategyId:(NSString * _Nullable) strategyId
                      timeout:(int)timeout
                      success:(void(^)(RTMReviewAnswer * _Nullable audioReview))successCallback
                         fail:(RTMAnswerFailCallBack)failCallback;
@@ -219,6 +228,7 @@ NS_ASSUME_NONNULL_BEGIN
                                               lang:(NSString * _Nonnull)lang
                                              codec:(NSString * _Nullable)codec
                                              srate:(int32_t)srate
+                              strategyId:(NSString * _Nullable) strategyId
                                            timeout:(int)timeout;
 
 
@@ -226,18 +236,21 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param videoUrl 视频数据 videoUrl videoData二选一
 /// @param videoData 视频数据 videoUrl videoData二选一
 /// @param videoName 视频名字
+/// @param strategyId 对应文本审核的策略编号 https://docs.ilivedata.com/textcheck/technologydocument/introduction/
 /// @param timeout 请求超时时间 秒
 /// @param successCallback 成功回调
 /// @param failCallback 失败回调
 -(void)videoReviewWithSource:(NSString * _Nullable)videoUrl
                    videoData:(NSData * _Nullable)videoData
                    videoName:(NSString * _Nonnull)videoName
+                  strategyId:(NSString * _Nullable) strategyId
                      timeout:(int)timeout
                      success:(void(^)(RTMReviewAnswer * _Nullable videoReview))successCallback
                         fail:(RTMAnswerFailCallBack)failCallback;
 -(RTMReviewAnswer*)videoReviewWithSource:(NSString * _Nullable)videoUrl
                                          videoData:(NSData * _Nullable)videoData
                                          videoName:(NSString * _Nonnull)videoName
+                              strategyId:(NSString * _Nullable) strategyId
                                            timeout:(int)timeout;
 
 
@@ -265,6 +278,30 @@ NS_ASSUME_NONNULL_BEGIN
                                               srate:(int32_t)srate
                                            timeout:(int)timeout;
 
+
+/// 语音翻译（调用此接口需在管理系统启用语音翻译系统）调用这个接口的超时时间得加大到120s
+/// @param audioData 音频文件的二进制
+/// @param speechLanguageCode 源语言类型
+/// @param textLanguageCode 目标语言类型
+/// @param codec  编解码 传空默认为AMR_WB
+/// @param srate  0或者空则默认为16000
+/// @param timeout 请求超时时间 秒
+/// @param successCallback 成功回调
+/// @param failCallback 失败回调
+-(void)voiceTranslationWithSource:(NSData * _Nonnull)audioData
+               speechLanguageCode:(NSString * _Nonnull)speechLanguageCode
+                 textLanguageCode:(NSString *_Nonnull)textLanguageCode
+                            codec:(NSString *_Nullable)codec
+                            srate:(int32_t)srate
+                          timeout:(int)timeout
+                          success:(void(^)(RTMVoiceTranslateAnswer * _Nullable translateAnswer))successCallback
+                             fail:(RTMAnswerFailCallBack)failCallback;
+-(RTMVoiceTranslateAnswer*)voiceTranslationWithSource:(NSData * _Nonnull)audioData
+                                   speechLanguageCode:(NSString * _Nonnull)speechLanguageCode
+                                     textLanguageCode:(NSString *_Nonnull)lang
+                                                codec:(NSString *_Nullable)codec
+                                                srate:(int32_t)srate
+                                              timeout:(int)timeout;
 @end
 
 NS_ASSUME_NONNULL_END

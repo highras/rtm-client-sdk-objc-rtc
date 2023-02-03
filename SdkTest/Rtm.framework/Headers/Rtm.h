@@ -17,6 +17,7 @@
 
 
 #import <Rtm/FPNNTCPClient.h>
+#import <Rtm/FPNNUDPClient.h>
 #import <Rtm/FPNNAnswer.h>
 #import <Rtm/FPNNQuest.h>
 #import <Rtm/FPNError.h>
@@ -34,6 +35,7 @@
 #import <Rtm/RTMClient+File.h>
 #import <Rtm/RTMClient+Encryptor.h>
 #import <Rtm/RTMClient+Tools.h>
+#import <Rtm/RTMClient+Session.h>
 #import <Rtm/RTMClient+P2P_Chat.h>
 #import <Rtm/RTMClient+Group_Chat.h>
 #import <Rtm/RTMClient+Room_Chat.h>
@@ -48,6 +50,7 @@
 
 #import <Rtm/RTMClient+RealTimeAudioInterface.h>
 #import <Rtm/RTMClient+RealTimeP2PAudioInterface.h>
+#import <Rtm/RTMClient+RealTimeAudioAutoTranslate.h>
 
 //realtime video
 #import <Rtm/RTMClient+RealTimeVideoInterface.h>

@@ -15,22 +15,25 @@ NS_ASSUME_NONNULL_BEGIN
                      timeout:(int)timeout
                      success:(RTMAnswerSuccessCallBack)successCallback
                         fail:(RTMAnswerFailCallBack)failCallback;
-//-(FPNNAnswer*)getP2PFileTokenWithId:(NSNumber*)userId
-//                            timeout:(int)timeout;
+
     
 -(void)getGroupFileTokenWithId:(NSNumber*)groupId
                        timeout:(int)timeout
                        success:(RTMAnswerSuccessCallBack)successCallback
                           fail:(RTMAnswerFailCallBack)failCallback;
-//-(FPNNAnswer*)getGroupFileTokenWithId:(NSNumber*)groupId
-//                              timeout:(int)timeout;
+
                                   
 -(void)getRoomFileTokenWithId:(NSNumber*)roomId
                       timeout:(int)timeout
                       success:(RTMAnswerSuccessCallBack)successCallback
                          fail:(RTMAnswerFailCallBack)failCallback;
-//-(FPNNAnswer*)getRoomFileTokenWithId:(NSNumber*)roomId
-//                             timeout:(int)timeout;
+
+
+-(void)getUploadFileTokenWithTimeout:(int)timeout
+                             success:(RTMAnswerSuccessCallBack)successCallback
+                                fail:(RTMAnswerFailCallBack)failCallback;
+
+
 
 -(NSDictionary*)getFileQuestBody:(NSDictionary *)data
                            recvId:(NSNumber *)recvId

@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)int srate;//rtm audio 采样率
 @property(nonatomic,strong)NSString * codec;//rtm audio 编码格式
 @property(nonatomic,assign)BOOL isRtmAudio;//是否为rtm音频消息
+
 +(BOOL)isRtmAudio:(NSString*)attrsString;
 +(RTMFileInfo*)fileModelConvert:(NSString*)msg attrs:(NSString*)attrs;
 

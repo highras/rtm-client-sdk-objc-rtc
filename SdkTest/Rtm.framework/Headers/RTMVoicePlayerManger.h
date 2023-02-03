@@ -12,8 +12,8 @@
 NS_ASSUME_NONNULL_BEGIN
 @class RTMClient;
 @interface RTMVoicePlayerManger : NSObject
-#define RTVSampleRate_48000 48000
-#define RTVFrameNumber_48000   RTVSampleRate_48000/50
+#define RTVSampleRate_16000 48000
+#define RTVFrameNumber_16000   RTVSampleRate_16000/50
 
 @property(nonatomic,assign)int channelNum;//单1  双2
 @property(nonatomic,strong)RTVAudioEngine * audioEngine;
@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)activeRoomChang;
 -(void)startActiveAudio;
 //-(void)stopActiveAudio;
+@property(nonatomic,strong)dispatch_queue_t mic_speaker_managerQueue;
 @end
 
 NS_ASSUME_NONNULL_END

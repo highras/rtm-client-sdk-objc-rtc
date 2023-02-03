@@ -8,6 +8,7 @@
 
 #import <Rtm/Rtm.h>
 #import "RTMAudioModel.h"
+#import "RTMFileAnswer.h"
 NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSInteger, RTMFileType)
 {
@@ -89,6 +90,28 @@ typedef NS_ENUM(NSInteger, RTMFileType)
                   timeout:(int)timeout
                   success:(void(^)(RTMSendAnswer * sendAnswer))successCallback
                      fail:(RTMAnswerFailCallBack)failCallback;
+
+
+
+
+/// 上传文件
+/// 优先判断audioModel为有效则发送音频文件  如果audioModel无效时fileData fileName fileSuffix fileType为必传发送常规文件
+/// @param fileData 文件数据
+/// @param fileName 文件名字
+/// @param fileSuffix 文件后缀
+/// @param fileType 文件类型
+/// @param audioModel rtm音频消息模型
+/// @param timeout 请求超时时间 秒
+/// @param successCallback 成功回调
+/// @param failCallback 失败回调
+-(void)uploadFileData:(NSData * _Nullable)fileData
+             fileName:(NSString * _Nullable)fileName
+           fileSuffix:(NSString * _Nullable)fileSuffix
+             fileType:(RTMFileType)fileType
+           audioModel:(RTMAudioModel * _Nullable)audioModel
+              timeout:(int)timeout
+              success:(void(^)(RTMFileAnswer * fileAnswer))successCallback
+                 fail:(RTMAnswerFailCallBack)failCallback;
 
 @end
 

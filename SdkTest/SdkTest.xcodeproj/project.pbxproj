@@ -32,6 +32,7 @@
 		568A8FD2255BE2FB008805B3 /* RTMAudioplayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 568A8FC4255BE2FA008805B3 /* RTMAudioplayer.m */; };
 		568A8FD3255BE2FB008805B3 /* RtmVoiceConverterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 568A8FC8255BE2FA008805B3 /* RtmVoiceConverterManager.m */; };
 		568A8FD5255BE35E008805B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 568A8FD4255BE35E008805B3 /* Assets.xcassets */; };
+		568F3AA7298CFBBE00323D88 /* RTMTokenTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 568F3AA5298CFBBD00323D88 /* RTMTokenTest.mm */; };
 		56B345EC260AE28A0072DE21 /* FunctionSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B345EB260AE28A0072DE21 /* FunctionSelectionViewController.m */; };
 		56B345F8260AE2E90072DE21 /* AudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B345F7260AE2E90072DE21 /* AudioViewController.m */; };
 		56B34601260AE2F90072DE21 /* NormalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B34600260AE2F90072DE21 /* NormalViewController.m */; };
@@ -105,6 +106,8 @@
 		568A8FC7255BE2FA008805B3 /* interf_enc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interf_enc.h; sourceTree = "<group>"; };
 		568A8FC8255BE2FA008805B3 /* RtmVoiceConverterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RtmVoiceConverterManager.m; sourceTree = "<group>"; };
 		568A8FD4255BE35E008805B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		568F3AA5298CFBBD00323D88 /* RTMTokenTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RTMTokenTest.mm; sourceTree = "<group>"; };
+		568F3AA6298CFBBE00323D88 /* RTMTokenTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMTokenTest.h; sourceTree = "<group>"; };
 		56B345EA260AE28A0072DE21 /* FunctionSelectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FunctionSelectionViewController.h; sourceTree = "<group>"; };
 		56B345EB260AE28A0072DE21 /* FunctionSelectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FunctionSelectionViewController.m; sourceTree = "<group>"; };
 		56B345F6260AE2E90072DE21 /* AudioViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioViewController.h; sourceTree = "<group>"; };
@@ -178,6 +181,8 @@
 				56E755FA259B2BC200951BF9 /* SdkTest.entitlements */,
 				568A8F62255BE146008805B3 /* AppDelegate.h */,
 				568A8F63255BE146008805B3 /* AppDelegate.mm */,
+				568F3AA6298CFBBE00323D88 /* RTMTokenTest.h */,
+				568F3AA5298CFBBD00323D88 /* RTMTokenTest.mm */,
 				56B345EA260AE28A0072DE21 /* FunctionSelectionViewController.h */,
 				56B345EB260AE28A0072DE21 /* FunctionSelectionViewController.m */,
 				56B345FF260AE2F90072DE21 /* NormalViewController.h */,
@@ -431,6 +436,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				568A8F9A255BE159008805B3 /* NSObject+Description.m in Sources */,
+				568F3AA7298CFBBE00323D88 /* RTMTokenTest.mm in Sources */,
 				56B345EC260AE28A0072DE21 /* FunctionSelectionViewController.m in Sources */,
 				568A8FD2255BE2FB008805B3 /* RTMAudioplayer.m in Sources */,
 				568A8FCE255BE2FB008805B3 /* RTMRecordManager.m in Sources */,
