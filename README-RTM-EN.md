@@ -21,6 +21,7 @@ iOS RTM Usage document (integration + interface description)
 * [group chat interface](#groupchatinterface)//group interface encapsulation ( define mtype) Historical messages and unread are generated
 * [room chat interface](#roomchatinterface)//room interface encapsulation (define mtype) Historical messages and unread are generated
 * [broadcast chat interface](#broadcastchatinterface)//broadcast interface encapsulation (define mtype) Historical messages and unread are generated
+* [session interface](#sessioninterface)
 * [audio record and play interface](#audiorecordandplayinterface)
 
 <a id="versionsupport">version support</a>
@@ -1719,6 +1720,95 @@ self.client = [RTMClient clientWithEndpoint:
                                                              end:(NSNumber * _Nullable)end
                                                           lastid:(NSNumber * _Nullable)lastid
                                                          timeout:(int)timeout;
+
+```
+
+
+<a id="sessioninterface">session interface</a>
+================                           
+```objc
+
+/// Get the list of all p2p sessions
+/// @param mtime   a millisecond timestamp. Messages larger than this timestamp are counted as unread messages, and the last unread message is regarded as the last message of the session. If not, the last offline time is taken by default.
+/// @param messageType  list of message types. If it is not transmitted, messages with mtype 30-50 will be queried by default
+/// @param timeout Request timeout seconds
+/// @param successCallback 
+/// @param failCallback
+-(void)getP2pConversationsList:(int64_t)mtime
+                   messageType:(NSArray <NSNumber*>* _Nullable)messageType
+                       timeout:(int)timeout
+                       success:(void(^)(RTMConversation * sendAnswer))successCallback
+                          fail:(RTMAnswerFailCallBack)failCallback;
+
+
+/// Get the list of all group sessions
+/// @param mtime   a millisecond timestamp. Messages larger than this timestamp are counted as unread messages, and the last unread message is regarded as the last message of the session. If not, the last offline time is taken by default.
+/// @param messageType  list of message types. If it is not transmitted, messages with mtype 30-50 will be queried by default
+/// @param timeout Request timeout seconds
+/// @param successCallback 
+/// @param failCallback
+-(void)getGroupConversationsList:(int64_t)mtime
+                     messageType:(NSArray <NSNumber*>* _Nullable)messageType
+                         timeout:(int)timeout
+                         success:(void(^)(RTMConversation * sendAnswer))successCallback
+                            fail:(RTMAnswerFailCallBack)failCallback;
+
+
+
+/// 获Get the list of p2p unread sessions
+/// @param mtime  a millisecond timestamp. Messages larger than this timestamp are counted as unread messages, and the last unread message is regarded as the last message of the session. If not, the last offline time is taken by default.
+/// @param messageType  list of message types. If it is not transmitted, messages with mtype 30-50 will be queried by default
+/// @param timeout Request timeout seconds
+/// @param successCallback 
+/// @param failCallback
+-(void)getP2pUnreadConversationsList:(int64_t)mtime
+                         messageType:(NSArray <NSNumber*>* _Nullable)messageType
+                             timeout:(int)timeout
+                             success:(void(^)(RTMConversation * sendAnswer))successCallback
+                                fail:(RTMAnswerFailCallBack)failCallback;
+
+
+
+/// Get the list of unread sessions of all groups
+/// @param mtime a millisecond timestamp. Messages larger than this timestamp are counted as unread messages, and the last unread message is regarded as the last message of the session. If not, the last offline time is taken by default.
+/// @param messageType  list of message types. If it is not transmitted, messages with mtype 30-50 will be queried by default
+/// @param timeout Request timeout seconds
+/// @param successCallback 
+/// @param failCallback
+-(void)getGroupUnreadConversationsList:(int64_t)mtime
+                           messageType:(NSArray <NSNumber*>* _Nullable)messageType
+                               timeout:(int)timeout
+                               success:(void(^)(RTMConversation * sendAnswer))successCallback
+                                  fail:(RTMAnswerFailCallBack)failCallback;
+
+
+
+/// Get the list of all unread sessions
+/// @param mtime a millisecond timestamp. Messages larger than this timestamp are counted as unread messages, and the last unread message is regarded as the last message of the session. If not, the last offline time is taken by default.
+/// @param clear   Whether to clear the session unread state
+/// @param messageType  list of message types. If it is not transmitted, messages with mtype 30-50 will be queried by default
+/// @param timeout Request timeout seconds
+/// @param successCallback 
+/// @param failCallback
+-(void)getUnreadConversationsList:(int64_t)mtime
+                            clear:(BOOL)clear
+                      messageType:(NSArray <NSNumber*>* _Nullable)messageType
+                          timeout:(int)timeout
+                          success:(void(^)(RTMConversation * p2pConversation,RTMConversation * groupConversation))successCallback
+                             fail:(RTMAnswerFailCallBack)failCallback;
+
+
+
+/// Delete p2p session
+/// @param toId The uid of the peer in the p2p session
+/// @param timeout Request timeout seconds
+/// @param successCallback 
+/// @param failCallback
+-(void)removeConversation:(int64_t)toId
+                  timeout:(int)timeout
+                  success:(void(^)(void))successCallback
+                     fail:(RTMAnswerFailCallBack)failCallback;
+
 
 ```
 
