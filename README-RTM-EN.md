@@ -1728,12 +1728,12 @@ self.client = [RTMClient clientWithEndpoint:
 ================                           
 ```objc
 
-/// 获取所有p2p会话列表
-/// @param mtime mtime参数为毫秒级时间戳，大于该时间戳的消息被计为未读消息，未读消息的最后一条作为会话的最后一条消息。不传则默认取上次离线时间。
-/// @param messageType 参数为消息类型列表，不传则默认查询mtype为30-50的消息
-/// @param timeout 请求超时时间 秒
-/// @param successCallback 成功回调
-/// @param failCallback 失败回调
+/// Get the list of all p2p sessions
+/// @param mtime   a millisecond timestamp. Messages larger than this timestamp are counted as unread messages, and the last unread message is regarded as the last message of the session. If not, the last offline time is taken by default.
+/// @param messageType  list of message types. If it is not transmitted, messages with mtype 30-50 will be queried by default
+/// @param timeout Request timeout seconds
+/// @param successCallback 
+/// @param failCallback
 -(void)getP2pConversationsList:(int64_t)mtime
                    messageType:(NSArray <NSNumber*>* _Nullable)messageType
                        timeout:(int)timeout
@@ -1741,12 +1741,12 @@ self.client = [RTMClient clientWithEndpoint:
                           fail:(RTMAnswerFailCallBack)failCallback;
 
 
-/// 获取所有群组会话列表
-/// @param mtime 参数为毫秒级时间戳，大于该时间戳的消息被计为未读消息，未读消息的最后一条作为会话的最后一条消息。不传则默认取上次离线时间。
-/// @param messageType 参数为消息类型列表，不传则默认查询mtype为30-50的消息
-/// @param timeout 请求超时时间 秒
-/// @param successCallback 成功回调
-/// @param failCallback 失败回调
+/// Get the list of all group sessions
+/// @param mtime   a millisecond timestamp. Messages larger than this timestamp are counted as unread messages, and the last unread message is regarded as the last message of the session. If not, the last offline time is taken by default.
+/// @param messageType  list of message types. If it is not transmitted, messages with mtype 30-50 will be queried by default
+/// @param timeout Request timeout seconds
+/// @param successCallback 
+/// @param failCallback
 -(void)getGroupConversationsList:(int64_t)mtime
                      messageType:(NSArray <NSNumber*>* _Nullable)messageType
                          timeout:(int)timeout
@@ -1755,12 +1755,12 @@ self.client = [RTMClient clientWithEndpoint:
 
 
 
-/// 获取p2p未读会话列表
-/// @param mtime mtime参数为毫秒级时间戳，大于该时间戳的消息被计为未读消息，未读消息的最后一条作为会话的最后一条消息。不传则默认取上次离线时间。
-/// @param messageType 参数为消息类型列表，不传则默认查询mtype为30-50的消息
-/// @param timeout 请求超时时间 秒
-/// @param successCallback 成功回调
-/// @param failCallback 失败回调
+/// 获Get the list of p2p unread sessions
+/// @param mtime  a millisecond timestamp. Messages larger than this timestamp are counted as unread messages, and the last unread message is regarded as the last message of the session. If not, the last offline time is taken by default.
+/// @param messageType  list of message types. If it is not transmitted, messages with mtype 30-50 will be queried by default
+/// @param timeout Request timeout seconds
+/// @param successCallback 
+/// @param failCallback
 -(void)getP2pUnreadConversationsList:(int64_t)mtime
                          messageType:(NSArray <NSNumber*>* _Nullable)messageType
                              timeout:(int)timeout
@@ -1769,12 +1769,12 @@ self.client = [RTMClient clientWithEndpoint:
 
 
 
-/// 获取所有群组未读会话列表
-/// @param mtime mtime参数为毫秒级时间戳，大于该时间戳的消息被计为未读消息，未读消息的最后一条作为会话的最后一条消息。不传则默认取上次离线时间。
-/// @param messageType 参数为消息类型列表，不传则默认查询mtype为30-50的消息
-/// @param timeout 请求超时时间 秒
-/// @param successCallback 成功回调
-/// @param failCallback 失败回调
+/// Get the list of unread sessions of all groups
+/// @param mtime a millisecond timestamp. Messages larger than this timestamp are counted as unread messages, and the last unread message is regarded as the last message of the session. If not, the last offline time is taken by default.
+/// @param messageType  list of message types. If it is not transmitted, messages with mtype 30-50 will be queried by default
+/// @param timeout Request timeout seconds
+/// @param successCallback 
+/// @param failCallback
 -(void)getGroupUnreadConversationsList:(int64_t)mtime
                            messageType:(NSArray <NSNumber*>* _Nullable)messageType
                                timeout:(int)timeout
@@ -1783,13 +1783,13 @@ self.client = [RTMClient clientWithEndpoint:
 
 
 
-/// 获取所有未读会话列表
-/// @param mtime 参数为毫秒级时间戳，大于该时间戳的消息被计为未读消息，未读消息的最后一条作为会话的最后一条消息。不传则默认取上次离线时间。
-/// @param clear 参数为是否清除会话未读状态
-/// @param messageType 参数为消息类型列表，不传则默认查询mtype为30-50的消息
-/// @param timeout 请求超时时间 秒
-/// @param successCallback 成功回调
-/// @param failCallback 失败回调
+/// Get the list of all unread sessions
+/// @param mtime a millisecond timestamp. Messages larger than this timestamp are counted as unread messages, and the last unread message is regarded as the last message of the session. If not, the last offline time is taken by default.
+/// @param clear   Whether to clear the session unread state
+/// @param messageType  list of message types. If it is not transmitted, messages with mtype 30-50 will be queried by default
+/// @param timeout Request timeout seconds
+/// @param successCallback 
+/// @param failCallback
 -(void)getUnreadConversationsList:(int64_t)mtime
                             clear:(BOOL)clear
                       messageType:(NSArray <NSNumber*>* _Nullable)messageType
@@ -1799,11 +1799,11 @@ self.client = [RTMClient clientWithEndpoint:
 
 
 
-/// 删除p2p会话
-/// @param toId 参数为p2p会话中对方的uid
-/// @param timeout 请求超时时间 秒
-/// @param successCallback 成功回调
-/// @param failCallback 失败回调
+/// Delete p2p session
+/// @param toId The uid of the peer in the p2p session
+/// @param timeout Request timeout seconds
+/// @param successCallback 
+/// @param failCallback
 -(void)removeConversation:(int64_t)toId
                   timeout:(int)timeout
                   success:(void(^)(void))successCallback
