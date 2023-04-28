@@ -65,7 +65,7 @@ typedef void (^RTMLoginFailCallBack)(FPNError * _Nullable error);
 @property(nonatomic,weak)id <RTMVoiceProtocol> voiceDelegate;
 @property(nonatomic,weak)id <RTMVideoProtocol> videoDelegate;
 
-@property (nonatomic,strong)NSString * rtcEndpoint;
+
 
 @property(nonatomic,readonly,assign)int64_t projectId;
 @property(nonatomic,readonly,assign)int64_t userId;

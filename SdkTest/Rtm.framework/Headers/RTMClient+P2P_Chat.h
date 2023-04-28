@@ -62,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
                                   timeout:(int)timeout;
 
 
-/// 获取历史P2P消息 对 getP2PHistoryMessageWithUserId 的封装 mtypes = [30,32,40,41,42,50]
+/// 获取历史P2P消息 对 getP2PHistoryMessageWithUserId 的封装 mtypes = [30,40,41,42,43,50]
 /// @param userId int64 获取和哪个uid之间的历史消息
 /// @param desc 是否降序排列
 /// @param num int16 条数

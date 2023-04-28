@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @interface RTMClient (Broadcast_Chat)
-/// 获取广播历史消息  对 getBroadCastHistoryMessageWithNum 的封装 mtypes = [30,32,40,41,42,50]
+/// 获取广播历史消息  对 getBroadCastHistoryMessageWithNum 的封装 mtypes = [30,40,41,42,43,50]
 /// @param num int16 条数
 /// @param desc 是否降序排列
 /// @param begin int64 开始时间戳，精确到 毫秒

@@ -69,7 +69,7 @@ iOS RTM Usage document (integration + interface description)
 -(void)rtmKickout:(RTMClient *)client;
 
 //kickout room
--(void)rtmRoomKickoutData:(RTMClient *)client data:(NSDictionary * _Nullable)data;
+-(void)rtmRoomKickout:(RTMClient *)client roomId:(int64_t)roomId;
 
 //binary
 -(void)rtmPushP2PBinary:(RTMClient *)client message:(RTMMessage * _Nullable)message;

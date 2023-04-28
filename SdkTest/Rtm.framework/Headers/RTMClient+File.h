@@ -20,7 +20,7 @@ typedef NS_ENUM(NSInteger, RTMFileType)
 @interface RTMClient (File)
 
 
-/// p2p 发送文件 mtype=40图片  mtype=41语音  mtype=42视频   mtype=50其他
+/// p2p 发送文件 mtype=40图片  mtype=41语音消息  mtype=42视频  mtype=43语音文件  mtype=50其他
 /// 优先判断audioModel为有效则发送音频消息  如果audioModel无效时fileData fileName fileSuffix fileType为必传发送常规文件
 /// @param userId 发给谁
 /// @param fileData 文件数据
@@ -44,7 +44,7 @@ typedef NS_ENUM(NSInteger, RTMFileType)
                     fail:(RTMAnswerFailCallBack)failCallback;
 
 
-/// group 发送文件 mtype=40图片  mtype=41语音  mtype=42视频   mtype=50其他
+/// group 发送文件 mtype=40图片  mtype=41语音  mtype=42视频   mtype=43语音文件 mtype=50其他
 /// 优先判断audioModel为有效则发送音频消息  如果audioModel无效时fileData fileName fileSuffix fileType为必传发送常规文件
 /// @param groupId 群组ID
 /// @param fileData 文件数据
@@ -68,7 +68,7 @@ typedef NS_ENUM(NSInteger, RTMFileType)
                        fail:(RTMAnswerFailCallBack)failCallback;
 
 
-/// room 发送文件  mtype=40图片  mtype=41语音  mtype=42视频   mtype=50其他
+/// room 发送文件  mtype=40图片  mtype=41语音  mtype=42视频   mtype=43语音文件 mtype=50其他
 /// 优先判断audioModel为有效则发送音频消息  如果audioModel无效时fileData fileName fileSuffix fileType为必传发送常规文件
 /// @param roomId 房间Id
 /// @param fileData 文件数据

@@ -58,7 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
                                       timeout:(int)timeout;
 
 
-/// 获取历史Room消息 对 getRoomHistoryMessageWithId 的封装 mtypes = [30,32,40,41,42,50] 
+/// 获取历史Room消息 对 getRoomHistoryMessageWithId 的封装 mtypes = [30,40,41,42,43,50]
 /// @param roomId int64
 /// @param desc 是否降序排列
 /// @param num int16 条数

@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RTMSendAnswer : RTMBaseAnswer
 @property(nonatomic,assign)int64_t mtime;
 @property(nonatomic,assign)int64_t messageId;
+@property(nonatomic,strong)NSString * msg;   //chat类型mType = 30 会返回审核后的文本
 @end
 
 NS_ASSUME_NONNULL_END

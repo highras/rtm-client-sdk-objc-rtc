@@ -50,11 +50,11 @@
 {
     NSLog(@"rtmKickout");
 }
-//房间踢出
--(void)rtmRoomKickoutData:(RTMClient *)client data:(NSDictionary * _Nullable)data
-{
-    NSLog(@"rtmRoomKickoutData %@",data);
+////房间踢出
+-(void)rtmRoomKickout:(RTMClient *)client roomId:(int64_t)roomId{
+    NSLog(@"rtmRoomKickoutData %lld",roomId);
 }
+
 //normal Binary
 -(void)rtmPushP2PBinary:(RTMClient *)client message:(RTMMessage * _Nullable)message{
     NSLog(@"rtmPushP2PBinary %@",message.rtm_autoDescription);

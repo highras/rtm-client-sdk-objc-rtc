@@ -47,7 +47,6 @@
                                    delegate:self
                                      config:nil];
     
-    self.client.rtcEndpoint = @"0";
     self.client.videoDelegate = self;
     
     

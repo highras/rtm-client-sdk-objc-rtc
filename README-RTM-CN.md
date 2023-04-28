@@ -68,7 +68,7 @@ iOS RTM 使用文档 （集成+接口说明）
 -(void)rtmKickout:(RTMClient *)client;
 
 //房间踢出
--(void)rtmRoomKickoutData:(RTMClient *)client data:(NSDictionary * _Nullable)data;
+-(void)rtmRoomKickout:(RTMClient *)client roomId:(int64_t)roomId;
 
 //Binary
 -(void)rtmPushP2PBinary:(RTMClient *)client message:(RTMMessage * _Nullable)message;

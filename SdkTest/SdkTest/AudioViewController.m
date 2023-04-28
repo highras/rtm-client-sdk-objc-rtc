@@ -38,7 +38,6 @@
                                    delegate:self
                                      config:nil];
     
-    self.client.rtcEndpoint = @"";
     self.client.voiceDelegate = self;
     [self _login];
     
