@@ -178,8 +178,13 @@
     if (indexPath.section == 0) {
 
         if (indexPath.row == 0) {//@[@"验证登录"]
-
-            self.client = [RTMClient clientWithEndpoint:@""
+            
+            NSString * endpoint = nil;
+            if(endpoint.length == nil){
+                return;
+            }
+            
+            self.client = [RTMClient clientWithEndpoint:endpoint
                                               projectId:11000001
                                                  userId:666
                                                delegate:self

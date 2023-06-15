@@ -11,6 +11,8 @@
 #import <Rtm/Rtm.h>
 #import "NSObject+Description.h"
 #import "RTMTokenTest.h"
+#import "Masonry.h"
+#import "MBProgressHUD.h"
 @interface AudioViewController ()<RTMProtocol,RTMVoiceProtocol>
 @property(nonatomic,strong)RTMClient* client;
 @property(nonatomic,strong)UIButton * openSpeak;
@@ -26,24 +28,42 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.openSpeak];
-    self.openSpeak.frame = CGRectMake(100, 100, 200, 50);
+    [self.openSpeak mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.top.equalTo(self.view).offset(88);
+        make.width.equalTo(@200);
+        make.height.equalTo(@50);
+    }];
+
     
     [self.view addSubview:self.openPlay];
-    self.openPlay.frame = CGRectMake(100, 200, 200, 50);
+    [self.openPlay mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.top.equalTo(self.openSpeak.mas_bottom).offset(30);
+        make.width.equalTo(@200);
+        make.height.equalTo(@50);
+    }];
     
+    
+    NSString * endpoint = nil;
+    if(endpoint.length == nil){
+        return;
+    }
     //1 初始化Rtm
-    self.client = [RTMClient clientWithEndpoint:@""
-                                      projectId:123
-                                     userId:777
-                                   delegate:self
-                                     config:nil];
+    self.client = [RTMClient clientWithEndpoint:endpoint
+                                      projectId:1
+                                         userId:777
+                                       delegate:self
+                                         config:nil];
     
     self.client.voiceDelegate = self;
     [self _login];
     
 }
 -(void)_login{
-    NSDictionary * tokenDic = [RTMTokenTest getToken:@"" projectId:@"" uid:@"666"];
+    
+    [self showLoadHudMessage:@"登录中..."];
+    NSDictionary * tokenDic = [RTMTokenTest getToken:@"" projectId:@"1" uid:@"777"];
     [self.client loginWithToken:[tokenDic objectForKey:@"token"]
                              ts:[[tokenDic objectForKey:@"ts"] longLongValue]
                        language:@"en"
@@ -52,25 +72,34 @@
                         success:^{
         
         NSLog(@"client 登录成功");
-        [self _createRoom];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showLoadHudMessage:@"登录成功,创建加入房间中..."];
+            [self _createRoom];
+        });
+        
         
     } connectFail:^(FPNError * _Nullable error) {
         
         NSLog(@"client 登录失败  %@",error);
         
     }];
+    
 }
 
 -(void)_createRoom{
     
-    [self.client createVoiceRoomWithId:@(111)
+    [self.client createVoiceRoomWithId:@(666)
                           enableRecord:NO
                                timeout:10
                                success:^(RTMVoiceCreateRoomAnswer * answer) {
         
         NSLog(@"创建并加入房间成功");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showHudMessage:@"创建成功 开始对话" hideTime:1.5];
+        });
+        
         //创建成功后会自动加入该房间
-        [self.client setCurrentVoiceActiveRoom:111];
+        [self.client setCurrentVoiceActiveRoom:666];
         //可同时加入多个房间  但是只会播放发送 voiceActiveRoom 活跃房间的实时语音  默认-1为未设置  语音结束后设置为-1
         //voiceActiveRoom 只会对已加入成功的房间设置生效
         
@@ -97,13 +126,15 @@
 }
 -(void)_joinVioceRoom{
     
-    [self.client enterVoiceRoomWithRoomId:@(111)
+    [self.client enterVoiceRoomWithRoomId:@(666)
                                   timeout:10
                                   success:^(RTMVoiceEnterRoomAnswer * answer) {
         
         NSLog(@"加入房间成功");
-        
-        [self.client setCurrentVoiceActiveRoom:111];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showHudMessage:@"加入房间成功 开始对话" hideTime:2];
+        });
+        [self.client setCurrentVoiceActiveRoom:666];
         //可同时加入多个房间  但是只会播放发送 voiceActiveRoom 活跃房间的实时语音  默认-1为未设置  语音结束后设置为-1
         //voiceActiveRoom 只会对已加入成功的房间设置生效
         
@@ -119,6 +150,10 @@
         
         NSLog(@"加入房间失败~~  %@",error);
         
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showHudMessage:[NSString stringWithFormat:@"加入房间失败~~ %@",error.ex] hideTime:2];
+        });
+        
     }];
 }
 
@@ -127,11 +162,26 @@
 -(BOOL)rtmReloginWillStart:(RTMClient *)client reloginCount:(int)reloginCount{
     
     //每次重连前会询问是否重连
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self showLoadHudMessage:@"重连中..."];
+        
+    });
     return YES;
 }
 -(void)rtmReloginCompleted:(RTMClient *)client reloginCount:(int)reloginCount reloginResult:(BOOL)reloginResult error:(FPNError *)error{
     //重连结果
     NSLog(@"重连成功后需要重新加入房间 并设置活跃房间");
+    
+    if (error == nil){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showHudMessage:@"重连成功" hideTime:2];
+            [self performSelector:@selector(_joinVioceRoom) withObject:nil afterDelay:2];
+        });
+    }else{
+        
+    }
+    
+    
 }
 
 -(void)rtmErrorLog:(NSString *)errorLog{
@@ -218,5 +268,29 @@
 }
 
 
-
+- (void)hiddenHud{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+}
+- (void)showLoadHudMessage:(NSString*)message{
+    [self hiddenHud];
+    MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.removeFromSuperViewOnHide = true;
+    hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+    hud.bezelView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
+    hud.contentColor = [UIColor whiteColor];
+    hud.label.text = message;
+    hud.label.textColor = [UIColor whiteColor];
+}
+- (void)showHudMessage:(NSString*)message hideTime:(int)hideTime{
+    [self hiddenHud];
+    MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+    hud.bezelView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
+    hud.mode = MBProgressHUDModeText;
+    hud.label.text = message;
+    hud.label.textColor = [UIColor whiteColor];
+    hud.label.numberOfLines = 0;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hideAnimated:YES afterDelay:hideTime];
+}
 @end

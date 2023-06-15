@@ -9,6 +9,8 @@
 #import "VideoViewController.h"
 #import <Rtm/Rtm.h>
 #import "RTMTokenTest.h"
+#import "Masonry.h"
+#import "MBProgressHUD.h"
 @interface VideoViewController ()<RTMProtocol,RTMVideoProtocol>
 @property(nonatomic,strong)UIButton * joinRoomButton;
 @property(nonatomic,strong)UIButton * createRoomButton;
@@ -24,33 +26,57 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.createRoomButton.frame = CGRectMake(100, 150, 100, 40);
+    
     [self.view addSubview:self.createRoomButton];
+    [self.createRoomButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(40);
+        make.top.equalTo(self.view).offset(88);
+        make.width.equalTo(@100);
+        make.height.equalTo(@40);
+    }];
     
     
-    self.joinRoomButton.frame = CGRectMake(100, 250, 100, 40);
     [self.view addSubview:self.joinRoomButton];
+    [self.joinRoomButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.view).offset(-40);
+        make.top.equalTo(self.view).offset(88);
+        make.width.equalTo(@100);
+        make.height.equalTo(@40);
+    }];
     
-    
-    self.subscribeUserButton.frame = CGRectMake(100, 350, 100, 40);
     [self.view addSubview:self.subscribeUserButton];
+    [self.subscribeUserButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.createRoomButton);
+        make.top.equalTo(self.createRoomButton.mas_bottom).offset(50);
+        make.width.equalTo(@100);
+        make.height.equalTo(@40);
+    }];
     
     
-    self.audioManagerButton.frame = CGRectMake(100, 450, 100, 40);
     [self.view addSubview:self.audioManagerButton];
+    [self.audioManagerButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.joinRoomButton);
+        make.top.equalTo(self.createRoomButton.mas_bottom).offset(50);
+        make.width.equalTo(@100);
+        make.height.equalTo(@40);
+    }];
     
     
+    NSString * endpoint = nil;
+    if(endpoint.length == nil){
+        return;
+    }
     
-    self.client = [RTMClient clientWithEndpoint:@""
-                                      projectId:0
-                                     userId:666
-                                   delegate:self
-                                     config:nil];
+    self.client = [RTMClient clientWithEndpoint:endpoint
+                                      projectId:80000071
+                                         userId:777
+                                       delegate:self
+                                         config:nil];
     
     self.client.videoDelegate = self;
     
-    
-    NSDictionary * tokenDic = [RTMTokenTest getToken:@"" projectId:@"" uid:@"666"];
+    [self showLoadHudMessage:@"登录中..."];
+    NSDictionary * tokenDic = [RTMTokenTest getToken:@"" projectId:@"80000071" uid:@"777"];
     [self.client loginWithToken:[tokenDic objectForKey:@"token"]
                              ts:[[tokenDic objectForKey:@"ts"] longLongValue]
                        language:@"en"
@@ -58,18 +84,18 @@
                         timeout:30
                         success:^{
         
-//        //视频初始化
-//        RTMBaseAnswer * an = [self.client setVideoEngine:RTMCaptureVideoDefault];
-//        if (an.error == nil) {
-//            NSLog(@"登录成功 + 视频初始化成功");
-//        }else{
-//            NSLog(@"%@",an.error);
-//        }
-        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showHudMessage:@"登录成功" hideTime:2];
+
+        });
         
     } connectFail:^(FPNError * _Nullable error) {
         
-        NSLog(@"login error %@",error);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showHudMessage:[NSString stringWithFormat:@"登录失败%@",error.ex] hideTime:2];
+
+        });
+       
        
         
     }];
@@ -79,11 +105,23 @@
 -(BOOL)rtmReloginWillStart:(RTMClient *)client reloginCount:(int)reloginCount{
     
     //每次重连前会询问是否重连
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self showLoadHudMessage:@"重连中..."];
+        
+    });
     return YES;
 }
 -(void)rtmReloginCompleted:(RTMClient *)client reloginCount:(int)reloginCount reloginResult:(BOOL)reloginResult error:(FPNError *)error{
     //重连结果
-    NSLog(@"重连成功后需要重新加入房间 并订阅用户");
+    NSLog(@"重连成功后需要重新加入房间");
+    if (error == nil){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showHudMessage:@"重连成功后需要重新加入房间 并进行订阅" hideTime:3];
+        });
+    }else{
+        
+    }
+    
 }
 
 -(void)rtmErrorLog:(NSString *)errorLog{
@@ -117,42 +155,68 @@
 
 -(void)_subscribeButtonClick{
     
+    
+    [self showLoadHudMessage:@"订阅中..."];
+    
     NSMutableArray * uids = [NSMutableArray array];
     UIView * uidsItemView = [UIView new];
     uidsItemView.backgroundColor = [UIColor redColor];
-    uidsItemView.frame = CGRectMake(200, 550, 120, 160);
+    uidsItemView.frame = CGRectMake(200, 450, 120, 160);
     [self.view addSubview:uidsItemView];
+    [uidsItemView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.joinRoomButton);
+        make.top.equalTo(self.subscribeUserButton.mas_bottom).offset(80);
+        make.width.equalTo(@120);
+        make.height.equalTo(@160);
+    }];
     [uids addObject:uidsItemView];
 ////
     [self.client subscribeVideoWithRoomId:@(666)
-                                      uid:@[@(777)]
+                                      uid:@[@(666)]
                            containerViews:uids
                                   timeout:10 success:^{
        
-        NSLog(@"订阅成功");
-    
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showHudMessage:@"订阅成功" hideTime:2];
+        });
+        
         
     } fail:^(FPNError * _Nullable error) {
         
-        NSLog(@"订阅失败%@",error);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showHudMessage:error.ex hideTime:2];
+        });
+        
+        
         
     }];
     
 }
 -(void)_joinRoomButtonClick{
     
+    [self showLoadHudMessage:@"加入中..."];
     [self.client enterVideoRoomWithRoomId:@(666)
                         captureVideoLevel:RTMCaptureVideoDefault
                                   timeout:10
                                   success:^(RTMVideoEnterRoomAnswer * _Nonnull answer) {
         
         
-        NSLog(@"加入房间成功");
+        
         dispatch_async(dispatch_get_main_queue(), ^{
+            
+            
+            [self showHudMessage:@"加入成功" hideTime:2];
+            
             
             [self.view addSubview:self.client.mySelfPreview];
             self.client.mySelfPreview.backgroundColor = [UIColor orangeColor];
-            self.client.mySelfPreview.frame = CGRectMake(50, 550, 120, 160);
+            [self.client.mySelfPreview mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.createRoomButton);
+                make.top.equalTo(self.subscribeUserButton.mas_bottom).offset(80);
+                make.width.equalTo(@120);
+                make.height.equalTo(@160);
+            }];
+            
             [self.client updatePreviewFrame];
             
         });
@@ -161,24 +225,32 @@
         
     } fail:^(FPNError * _Nullable error) {
         
-        NSLog(@"加入房间失败%@",error);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showHudMessage:error.ex hideTime:2];
+        });
         
     }];
     
 }
 -(void)_createRoomButtonClick{
     
+    [self showLoadHudMessage:@"创建中..."];
     [self.client createVideoRoomWithId:@(666)
                      captureVideoLevel:RTMCaptureVideoDefault
                           enableRecord:NO
                                timeout:10
                                success:^(RTMVideoCreateRoomAnswer * _Nonnull answer) {
         
-        NSLog(@"创建成功");
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showHudMessage:@"创建成功" hideTime:2];
+        });
         
     } fail:^(FPNError * _Nullable error) {
         
-        NSLog(@"创建失败%@",error);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showHudMessage:error.ex hideTime:2];
+        });
     }];
     
 }
@@ -196,7 +268,7 @@
     if (_createRoomButton == nil) {
         _createRoomButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _createRoomButton.backgroundColor = [UIColor orangeColor];
-        [_createRoomButton setTitle:@"创建房间" forState:UIControlStateNormal];
+        [_createRoomButton setTitle:@"1创建房间" forState:UIControlStateNormal];
         [_createRoomButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_createRoomButton addTarget:self action:@selector(_createRoomButtonClick) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -206,7 +278,7 @@
     if (_joinRoomButton == nil) {
         _joinRoomButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _joinRoomButton.backgroundColor = [UIColor orangeColor];
-        [_joinRoomButton setTitle:@"加入房间" forState:UIControlStateNormal];
+        [_joinRoomButton setTitle:@"2加入房间" forState:UIControlStateNormal];
         [_joinRoomButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_joinRoomButton addTarget:self action:@selector(_joinRoomButtonClick) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -216,7 +288,7 @@
     if (_subscribeUserButton == nil) {
         _subscribeUserButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _subscribeUserButton.backgroundColor = [UIColor orangeColor];
-        [_subscribeUserButton setTitle:@"订阅用户" forState:UIControlStateNormal];
+        [_subscribeUserButton setTitle:@"3订阅用户" forState:UIControlStateNormal];
         [_subscribeUserButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_subscribeUserButton addTarget:self action:@selector(_subscribeButtonClick) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -226,12 +298,36 @@
     if (_audioManagerButton == nil) {
         _audioManagerButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _audioManagerButton.backgroundColor = [UIColor orangeColor];
-        [_audioManagerButton setTitle:@"音频控制" forState:UIControlStateNormal];
+        [_audioManagerButton setTitle:@"4音频控制" forState:UIControlStateNormal];
         [_audioManagerButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_audioManagerButton addTarget:self action:@selector(_audioButtonClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _audioManagerButton;
 }
 
-
+- (void)hiddenHud{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+}
+- (void)showLoadHudMessage:(NSString*)message{
+    [self hiddenHud];
+    MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.removeFromSuperViewOnHide = true;
+    hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+    hud.bezelView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
+    hud.contentColor = [UIColor whiteColor];
+    hud.label.text = message;
+    hud.label.textColor = [UIColor whiteColor];
+}
+- (void)showHudMessage:(NSString*)message hideTime:(int)hideTime{
+    [self hiddenHud];
+    MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+    hud.bezelView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
+    hud.mode = MBProgressHUDModeText;
+    hud.label.text = message;
+    hud.label.textColor = [UIColor whiteColor];
+    hud.label.numberOfLines = 0;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hideAnimated:YES afterDelay:hideTime];
+}
 @end

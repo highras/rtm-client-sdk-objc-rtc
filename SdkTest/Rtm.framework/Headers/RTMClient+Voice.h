@@ -18,7 +18,7 @@ typedef void (^RTMVoiceConnectSuccessCallBack)(void);
 typedef void (^RTMVoiceConnectFailCallBack)(void);
 @interface RTMClient (Voice)
 @property(nonatomic,strong)NSString * voiceClientEndpoint;
-@property(nonatomic,strong)FPNNUDPClient * voiceClient;
+@property(nonatomic,strong)FPNNTCPClient * voiceClient;
 @property(nonatomic,strong)NSMutableDictionary * currentVoiceRoomCache;
 @property(nonatomic,assign)BOOL voiceInitFinish;
 @property(nonatomic,strong)RTMVoicePlayerManger * voicePlayerManger;

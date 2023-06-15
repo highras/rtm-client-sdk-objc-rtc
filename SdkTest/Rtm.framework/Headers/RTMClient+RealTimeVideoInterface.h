@@ -16,13 +16,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-//typedef NS_ENUM(NSInteger, RTMCaptureVideoLevel){
-//    
-//    RTMCaptureVideoDefault = 1,
-//    RTMCaptureVideoMiddle = 2,
-//    RTMCaptureVideoHigh = 3,
-//    
-//};
 
 @interface RTMClient (RealTimeVideoInterface)
 
@@ -32,13 +25,6 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)updatePreviewFrame;
 //更新成员视频view frame
 -(void)updateChildrenPreviewFrame;
-
-
-- (CGFloat)getMaxExposureValue;
-- (CGFloat)getMinExposureValue;
-@property(nonatomic,assign)CGFloat exposure;//曝光 0为默认
-
-
 
 
 
