@@ -25,8 +25,6 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)kickOutVoiceRoomNotificationWithRoomId:(int64_t)roomId userId:(int64_t)userId;
 //被邀请进入房间
 -(void)inviteIntoVoiceRoomNotificationWithRoomId:(int64_t)roomId userId:(int64_t)userId;
-//被强制拉入房间结果
--(void)forceInviteIntoVoiceRoomNotificationWithRoomId:(int64_t)roomId error:(FPNError * _Nullable)error;
 //权限命令通知
 -(void)pushVoiceAdminCommand:(NSArray*)uids command:(int)type;
 ////语音房间自动翻译

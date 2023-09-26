@@ -53,7 +53,7 @@ typedef void (^RTMLoginFailCallBack)(FPNError * _Nullable error);
            connectFail:(RTMLoginFailCallBack)loginFail;
 
 
-
+@property (nonatomic,strong)NSData * encryptorData;
 @property (nonatomic,strong)RTMClientConfig * clientConfig;
 @property (nonatomic,readonly,strong)NSString * sdkVersion;
 +(NSString*)getSdkVersion;
