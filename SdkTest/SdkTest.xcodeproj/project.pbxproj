@@ -724,7 +724,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/RTMAudioManager/lib",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-ld64",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.livedata.pushTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -755,7 +758,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/RTMAudioManager/lib",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-ld64",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.livedata.pushTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

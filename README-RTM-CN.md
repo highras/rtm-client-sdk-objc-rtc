@@ -26,7 +26,7 @@ iOS RTM 使用文档 （集成+接口说明）
 <a id="版本支持">版本支持</a>
 ================
 * 语言:Objective-C  
-* 最低支持 iOS10 系统
+* 最低支持 iOS12 系统
 
 
 
@@ -1393,12 +1393,14 @@ self.client = [RTMClient clientWithEndpoint:
 
 /// 添加设备，应用信息
 /// @param appType app类型   iOS ：apns   android ：fcm
+/// @tag 一个rtm项目对应多个推送项目时，所使用的推送项目的 tag
 /// @param deviceToken token
 /// @param timeout 请求超时时间 秒
 /// @param successCallback 成功回调
 /// @param failCallback 失败回调
 -(void)addDeviceWithAppType:(NSString * _Nonnull)appType
                 deviceToken:(NSString * _Nonnull)deviceToken
+                        tag:(NSString * _Nullable)tag
                     timeout:(int)timeout
                     success:(void(^)(void))successCallback
                        fail:(RTMAnswerFailCallBack)failCallback;

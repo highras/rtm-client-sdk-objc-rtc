@@ -1103,8 +1103,10 @@
 
                     }else if (indexPath.row == 1){//添加设备，应用信息
 
-//                        [self.client addDeviceWithApptype:@"iphone11"
+                        
+//                        [self.client addDeviceWithAppType:@"iphone11"
 //                                              deviceToken:@"token"
+//                                                      tag:nil
 //                                                  timeout:10
 //                                                  success:^{
 //

@@ -27,7 +27,7 @@ iOS RTM Usage document (integration + interface description)
 <a id="versionsupport">version support</a>
 ================
 * language:Objective-C  
-* minimum system iOS 10
+* minimum system iOS 12
 
 
 
@@ -1397,11 +1397,13 @@ self.client = [RTMClient clientWithEndpoint:
 /// add device token
 /// @param apptype   iOS ：apns   android ：fcm
 /// @param deviceToken token
+/// @tag When a project corresponds to multiple push projects, the push project is used
 /// @param timeout Request timeout seconds
 /// @param successCallback 
 /// @param failCallback
 -(void)addDeviceWithAppType:(NSString * _Nonnull)appType
                 deviceToken:(NSString * _Nonnull)deviceToken
+                        tag:(NSString * _Nullable)tag
                     timeout:(int)timeout
                     success:(void(^)(void))successCallback
                        fail:(RTMAnswerFailCallBack)failCallback;
